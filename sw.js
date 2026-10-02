@@ -1,5 +1,5 @@
-const CACHE='drazdany2026-v7';
-const ASSETS=['./index.html','./app.css','./app.js','./manifest.webmanifest','./icon.svg','./invite.jpg','./qrcode.js'];
+const CACHE='drazdany2026-v8';
+const ASSETS=['./index.html','./app.css','./app.js','./manifest.webmanifest','./icon.svg','./invite.svg','./qrcode.js'];
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE);

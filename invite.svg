@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Adventní výlet do Drážďan</title>
+<desc id="desc">Vánoční pozvánka s drážďanským panoramatem, trhy, vlakem a sněhem.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#5a1023"/>
+    <stop offset=".52" stop-color="#a94a45"/>
+    <stop offset="1" stop-color="#f0a35f"/>
+  </linearGradient>
+  <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#fffaf0"/>
+    <stop offset="1" stop-color="#eadfcf"/>
+  </linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffe3a2"/>
+    <stop offset=".55" stop-color="#d9a84f"/>
+    <stop offset="1" stop-color="#fff0bf"/>
+  </linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<rect width="1200" height="800" fill="url(#sky)"/>
+<circle cx="1000" cy="105" r="70" fill="#f6d6a2" opacity=".22"/>
+<g fill="#fff5d6" opacity=".85">
+  <circle cx="90" cy="80" r="3"/><circle cx="165" cy="150" r="2.5"/><circle cx="265" cy="76" r="2"/>
+  <circle cx="375" cy="128" r="3"/><circle cx="520" cy="68" r="2.5"/><circle cx="690" cy="115" r="2"/>
+  <circle cx="830" cy="55" r="3"/><circle cx="1090" cy="160" r="2.5"/><circle cx="1145" cy="83" r="2"/>
+</g>
+<g fill="url(#gold)" opacity=".95">
+  <path d="M80 120l5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/>
+  <path d="M1110 230l5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/>
+  <path d="M910 120l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+</g>
+
+<g text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">
+  <text x="600" y="135" font-size="76" font-weight="700" fill="url(#gold)">Adventní výlet</text>
+  <text x="600" y="220" font-size="92" font-weight="700" fill="url(#gold)">do Drážďan</text>
+  <text x="600" y="270" font-size="30" font-family="Arial, sans-serif" font-weight="700" fill="#fff7e8">5.–6. prosince 2026</text>
+</g>
+
+<!-- distant Dresden skyline -->
+<g fill="#3b2630" opacity=".96">
+  <rect x="330" y="410" width="540" height="120"/>
+  <path d="M390 410v-90h34v90zm7-90 10-42 10 42z"/>
+  <path d="M515 410v-125h45v125zm8-125 15-70 14 70z"/>
+  <path d="M650 410v-150h55v150zm10-150 18-85 17 85z"/>
+  <path d="M760 410v-110h40v110zm8-110 12-55 12 55z"/>
+  <path d="M600 410c0-80 85-80 85 0z"/>
+</g>
+<g fill="#ffd56f">
+  <rect x="402" y="345" width="7" height="9"/><rect x="530" y="330" width="8" height="10"/>
+  <rect x="670" y="320" width="8" height="10"/><rect x="775" y="335" width="7" height="9"/>
+</g>
+
+<!-- river and snow -->
+<path d="M0 515c210-55 390 60 610 5 210-50 380-25 590 20v260H0z" fill="#7d94a6" opacity=".65"/>
+<path d="M0 570c230-70 430 20 660-10 220-30 380 5 540 45v195H0z" fill="url(#snow)"/>
+
+<!-- market stalls -->
+<g stroke="#6f2b2a" stroke-width="4">
+  <g transform="translate(510 525)">
+    <rect width="150" height="95" rx="6" fill="#7f1d2d"/>
+    <path d="M-10 0h170l-30-42H20z" fill="#f3c75e"/>
+    <rect x="18" y="25" width="114" height="34" fill="#fff0bf"/>
+    <circle cx="28" cy="-10" r="6" fill="#ffd86e"/><circle cx="55" cy="-20" r="6" fill="#ffd86e"/><circle cx="82" cy="-24" r="6" fill="#ffd86e"/><circle cx="109" cy="-20" r="6" fill="#ffd86e"/><circle cx="136" cy="-10" r="6" fill="#ffd86e"/>
+  </g>
+  <g transform="translate(715 555) scale(.88)">
+    <rect width="150" height="95" rx="6" fill="#8d3030"/>
+    <path d="M-10 0h170l-30-42H20z" fill="#f3c75e"/>
+    <rect x="18" y="25" width="114" height="34" fill="#fff0bf"/>
+  </g>
+  <g transform="translate(910 530) scale(.8)">
+    <rect width="150" height="95" rx="6" fill="#7f1d2d"/>
+    <path d="M-10 0h170l-30-42H20z" fill="#f3c75e"/>
+  </g>
+</g>
+
+<!-- Christmas trees -->
+<g>
+  <g transform="translate(1030 410)">
+    <path d="M0 0l-70 145h140z" fill="#173f31"/><path d="M0 50l-90 155h180z" fill="#205640"/>
+    <rect x="-9" y="190" width="18" height="42" fill="#5e3b28"/>
+    <g fill="#ffd86e"><circle cx="-38" cy="108" r="6"/><circle cx="28" cy="138" r="6"/><circle cx="-12" cy="170" r="6"/><circle cx="46" cy="186" r="5"/></g>
+    <path d="M0 -10l6 15 16 1-12 10 4 15-14-8-14 8 4-15-12-10 16-1z" fill="#ffd86e"/>
+  </g>
+  <g transform="translate(455 485) scale(.7)">
+    <path d="M0 0l-70 145h140z" fill="#173f31"/><path d="M0 50l-90 155h180z" fill="#205640"/>
+    <g fill="#ffd86e"><circle cx="-35" cy="110" r="6"/><circle cx="30" cy="148" r="6"/></g>
+  </g>
+</g>
+
+<!-- stylized train -->
+<g transform="translate(75 510)">
+  <path d="M0 80c0-52 35-80 80-80h110c42 0 70 35 70 82v110H0z" fill="#bd263b"/>
+  <rect x="27" y="28" width="80" height="55" rx="8" fill="#263943"/>
+  <rect x="120" y="28" width="82" height="55" rx="8" fill="#263943"/>
+  <rect x="38" y="45" width="150" height="20" rx="5" fill="#f7ca60"/>
+  <text x="113" y="60" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#4b1720">Praha → Dresden</text>
+  <circle cx="48" cy="140" r="12" fill="#fff6c9" filter="url(#glow)"/><circle cx="210" cy="140" r="12" fill="#fff6c9" filter="url(#glow)"/>
+  <path d="M20 205h220" stroke="#4f382f" stroke-width="12"/>
+  <path d="M-15 224h285M-5 250h275" stroke="#6a5145" stroke-width="7"/>
+</g>
+
+<!-- Stollen -->
+<g transform="translate(760 675)">
+  <ellipse cx="120" cy="32" rx="150" ry="42" fill="#b47c43"/>
+  <path d="M0 25c30-60 205-70 250-5 10 15 4 45-20 50H25C0 67-10 43 0 25z" fill="#c89252"/>
+  <path d="M8 18c42-40 188-54 232-8" fill="none" stroke="#fff4d8" stroke-width="25" stroke-linecap="round" opacity=".95"/>
+  <g fill="#714223"><circle cx="65" cy="45" r="5"/><circle cx="110" cy="38" r="5"/><circle cx="155" cy="48" r="5"/><circle cx="198" cy="42" r="5"/></g>
+</g>
+
+<rect y="735" width="1200" height="65" fill="#651322" opacity=".96"/>
+<text x="600" y="777" text-anchor="middle" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#fff1c7">Stollenfest • Striezelmarkt • Vánoční trhy</text>
+</svg>
