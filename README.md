@@ -1,29 +1,28 @@
 # Drážďany 2026
 
-Responzivní offline PWA průvodce pro adventní výlet do Drážďan **5.–6. prosince 2026**.
+Offline PWA průvodce pro adventní výlet do Drážďan **5.–6. prosince 2026**.
 
-## Funkce
+## Verze v6
 
-- sobotní a nedělní itinerář s časovou osou,
-- lokální odškrtávání jednotlivých bodů,
-- hlavní vánoční trhy a Stollenfest,
-- doporučení MHD a offline schematická mapa,
-- soukromá sekce ukládaná do localStorage,
-- export/import soukromých údajů přes JSON,
-- přenos mezi telefony pomocí QR kódu,
-- tematická úvodní pozvánka při prvním vstupu, později dostupná z hlavičky,
-- service worker + manifest pro instalaci jako PWA.
+Aplikace je rozdělena na:
+- `index.html`
+- `app.css`
+- `app.js`
+- `qrcode.js`
+- `invite.jpg`
+- `manifest.webmanifest`
+- `sw.js`
 
-## Soukromí
+Hlavní vlastnosti:
+- stabilní responzivní itinerář,
+- lokální označování bodů „Hotovo / Splněno“,
+- soukromá data v localStorage,
+- import/export JSON se zřetelnou zpětnou vazbou,
+- lokální offline QR bez odesílání dat třetí straně,
+- soukromá data se po načtení projeví v kartě „Moje cesta“ a v relevantních bodech itineráře,
+- pozvánka při prvním spuštění v6 a znovu přes hamburger menu,
+- diagnostika a vynucení aktualizace schované v hamburger menu,
+- service worker cache `drazdany2026-v6`, HTML používá network-first.
 
-Repozitář je veřejný, proto neobsahuje přesnou adresu ubytování, rezervační kódy, telefon hostitele ani jiné soukromé údaje. Ty se zadávají až v zařízení uživatele.
-
-QR kód obsahuje stejný JSON jako exportní pole. Jeho vygenerování aktuálně používá veřejnou službu api.qrserver.com a vyžaduje internet.
-
-## GitHub Pages
-
-Aplikace je publikovatelná z kořene větve `main`:
-
-**Settings → Pages → Deploy from a branch → main → /(root)**
-
+GitHub Pages:
 https://l-ra.github.io/drazdany2026/

@@ -1,28 +1,40 @@
-const CACHE='drazdany2026-v5';
-const ASSETS=['./index.html','./manifest.webmanifest','./icon.svg','./invite.jpg','./qrcode.js'];
-self.addEventListener('install',e=>{
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));
+const CACHE='drazdany2026-v6';
+const ASSETS=['./index.html','./app.css','./app.js','./manifest.webmanifest','./icon.svg','./invite.jpg','./qrcode.js'];
+self.addEventListener('install',event=>{
+  event.waitUntil((async()=>{
+    const cache=await caches.open(CACHE);
+    for(const url of ASSETS){
+      const response=await fetch(url,{cache:'reload'});
+      if(!response.ok) throw new Error('Precache failed: '+url);
+      await cache.put(url,response.clone());
+    }
+  })());
   self.skipWaiting();
 });
-self.addEventListener('activate',e=>{
-  e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
-  self.clients.claim();
+self.addEventListener('activate',event=>{
+  event.waitUntil((async()=>{
+    const keys=await caches.keys();
+    await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));
+    await self.clients.claim();
+  })());
 });
-self.addEventListener('fetch',e=>{
-  if(e.request.method!=='GET') return;
-  const u=new URL(e.request.url);
-  if(u.origin!==self.location.origin) return;
-  if(e.request.mode==='navigate'){
-    e.respondWith(
-      fetch(e.request,{cache:'no-store'})
-        .then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put('./index.html',c));return r})
-        .catch(()=>caches.match('./index.html'))
+self.addEventListener('fetch',event=>{
+  if(event.request.method!=='GET') return;
+  const url=new URL(event.request.url);
+  if(url.origin!==self.location.origin) return;
+  if(event.request.mode==='navigate'){
+    event.respondWith(
+      fetch(event.request,{cache:'no-store'}).then(async response=>{
+        if(response.ok){const cache=await caches.open(CACHE);await cache.put('./index.html',response.clone())}
+        return response;
+      }).catch(()=>caches.match('./index.html'))
     );
     return;
   }
-  e.respondWith(
-    caches.match(e.request).then(hit=>hit||fetch(e.request).then(r=>{
-      const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r;
+  event.respondWith(
+    caches.match(event.request).then(hit=>hit||fetch(event.request).then(async response=>{
+      if(response.ok){const cache=await caches.open(CACHE);await cache.put(event.request,response.clone())}
+      return response;
     }))
   );
 });

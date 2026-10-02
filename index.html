@@ -1,253 +1,259 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#7f1d2d">
-<meta name="description" content="Offline PWA průvodce pro adventní výlet do Drážďan 5.–6. 12. 2026">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" href="./icon.svg" type="image/svg+xml">
-<title>Drážďany 2026 · adventní průvodce</title>
-<style>
-:root{--wine:#7f1d2d;--wine2:#a3293d;--gold:#d7aa55;--cream:#fffaf0;--ink:#29231f;--muted:#746b65;--card:#fff;--line:#eadfce;--green:#1f7a55;--shadow:0 12px 32px rgba(61,35,25,.09);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(#fffaf0,#fff 36rem);color:var(--ink);line-height:1.55}.wrap{width:min(1080px,calc(100% - 28px));margin:auto}
-.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 80% 20%,rgba(215,170,85,.27),transparent 30%),linear-gradient(135deg,#5e1320,#8b2033 55%,#a02b3f);color:#fff;padding:42px 0 28px}.hero:after{content:"";position:absolute;inset:auto -5% -70px; height:120px;background:#fffaf0;transform:rotate(-3deg)}.heroInner{position:relative;z-index:1;display:grid;grid-template-columns:1.5fr .8fr;gap:28px;align-items:end}.eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#f4d9a2}.hero h1{font-size:clamp(2.3rem,8vw,5rem);line-height:.95;margin:.25rem 0 .8rem}.lead{max-width:720px;font-size:1.08rem;color:#fbeef1}.statusbox{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:16px;border-radius:18px;backdrop-filter:blur(10px)}.count{font-size:1.05rem;font-weight:800}.online{display:flex;gap:8px;align-items:center;margin-top:8px;font-size:.9rem}.dot{width:9px;height:9px;border-radius:50%;background:#f0b85a}.dot.ok{background:#76d7a7}.nav{position:sticky;top:0;z-index:20;background:rgba(255,250,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.navrow{display:flex;gap:6px;overflow:auto;padding:10px 0;scrollbar-width:none}.nav button{border:0;background:transparent;border-radius:999px;padding:9px 13px;font-weight:750;color:#685f59;white-space:nowrap}.nav button.active{background:var(--wine);color:#fff}.section{padding:34px 0 4px;scroll-margin-top:70px}.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:14px}.section h2{font-size:clamp(1.5rem,5vw,2.25rem);margin:0}.pill{border:1px solid var(--line);background:#fff;padding:7px 11px;border-radius:999px;font-size:.82rem;color:var(--muted)}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:-8px;position:relative;z-index:2}.q{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}.q b,.q span{display:block}.q span{font-size:.87rem;color:var(--muted);margin-top:3px}.notice{background:#fff6da;border:1px solid #ecd597;padding:13px 15px;border-radius:14px;margin:12px 0 18px}.daytabs{display:flex;gap:6px}.daytabs button{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:12px;font-weight:750}.daytabs button.active{background:var(--wine);color:#fff;border-color:var(--wine)}.timeline{position:relative}.event{display:grid;grid-template-columns:74px 1fr;gap:12px;position:relative;margin:0 0 10px;padding:15px 16px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 18px rgba(61,35,25,.05)}.event.now{outline:3px solid rgba(215,170,85,.45)}.event.done{opacity:.58}.event.done h3{text-decoration:line-through}.time{font-weight:850;color:var(--wine);font-size:.9rem}.event h3{margin:0 0 4px;font-size:1.03rem}.event p{margin:0;color:#5f5650}.event .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.event .check{position:absolute;right:12px;top:12px;width:27px;height:27px;border:1px solid #d7c9b7;border-radius:50%;background:#fff}.event.done .check{background:var(--green);border-color:var(--green)}.event.done .check:after{content:"✓";color:#fff;font-weight:900}.accent{border-left:5px solid var(--gold)}.btn,.linkbtn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:12px;padding:9px 12px;font-weight:800}.btn{background:var(--wine);color:#fff}.linkbtn{background:#f7eee3;color:var(--wine)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:var(--shadow)}.card h3{margin:.35rem 0}.badge{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--wine);padding:4px 8px;border-radius:999px;font-weight:850}.card small{color:var(--muted)}.card a{color:var(--wine);font-weight:800}.transport{display:grid;grid-template-columns:1fr 1fr;gap:12px}.price{font-size:2.1rem;font-weight:900;color:var(--wine)}.route{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:12px 0}.route span{background:#f6efe7;padding:7px 9px;border-radius:10px}.route b{background:var(--wine);color:#fff;border-radius:999px;padding:7px 10px}.mapbox{background:#f7efe4;border:1px solid var(--line);border-radius:20px;padding:10px;overflow:hidden}.mapbox svg{width:100%;height:auto}.river{fill:none;stroke:#78aeca;stroke-width:34;opacity:.55}.road{fill:none;stroke:#bba88f;stroke-width:5;stroke-linecap:round}.dash{stroke-dasharray:9 9}.pin circle{fill:var(--wine)}.pin text.num{fill:#fff;font-weight:900;text-anchor:middle}.pin text.label{fill:#493f39;font-weight:800}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form label{font-size:.86rem;font-weight:800}.form input,.form textarea{display:block;width:100%;margin-top:5px;border:1px solid #d9cab8;border-radius:12px;padding:11px;background:#fff;font:inherit}.wide{grid-column:1/-1}.privacy{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.checklist label{background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px}.footer{margin-top:40px;background:#2d2522;color:#eee0d6;padding:26px 0}.hidden{display:none!important}.install{border:0;background:#fff;color:var(--wine);font-weight:850;border-radius:999px;padding:8px 11px;margin-top:10px}
-
-.headerActions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
-.ghostbtn{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.13);color:#fff;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer}
-.check{position:static!important;width:auto!important;height:auto!important;border:1px solid #d7c9b7!important;border-radius:999px!important;background:#fff!important;padding:7px 11px!important;margin-top:10px!important;color:var(--wine)!important;font-weight:850!important;cursor:pointer}
-.check:after{content:none!important}
-.event.done .check{background:var(--green)!important;border-color:var(--green)!important;color:#fff!important}
-.sharebox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;margin-top:14px;box-shadow:var(--shadow)}
-.stack{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.qrwrap{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:14px;align-items:start;margin-top:14px}
-.qrbox{background:#fffaf0;border:1px dashed #d8bf92;border-radius:16px;padding:14px;text-align:center}
-.qrbox img{max-width:100%;height:auto;border-radius:10px;background:#fff;padding:6px;border:1px solid var(--line)}
-.help{color:var(--muted);font-size:.92rem}
-.overlay{position:fixed;inset:0;background:rgba(42,24,16,.82);backdrop-filter:blur(9px);display:flex;align-items:center;justify-content:center;padding:16px;z-index:100}
-.modal{width:min(960px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:26px;box-shadow:0 30px 80px rgba(0,0,0,.36)}
-.coverimg{display:block;width:100%;height:auto;border-radius:26px 26px 0 0}
-.modbody{padding:18px 20px 24px}
-.modbody h2{margin:.1rem 0 .5rem}
-.center{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
-
-/* v5: stable itinerary layout */
-.event{
-  display:grid!important;
-  grid-template-columns:92px minmax(0,1fr) auto!important;
-  grid-template-areas:"time content action"!important;
-  gap:12px 14px!important;
-  align-items:start!important;
-}
-.event>.time{grid-area:time;min-width:0}
-.event>div:last-child{grid-area:content;min-width:0}
-.event>.check{grid-area:action;justify-self:end;align-self:start;margin-top:0!important;white-space:nowrap}
-.build{display:inline-flex;margin-top:9px;font-size:.76rem;color:#fff9;background:#ffffff12;border:1px solid #ffffff24;border-radius:999px;padding:4px 8px}
-#forceUpdate{margin-top:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:7px 10px;font-weight:750;cursor:pointer}
-#qrOut{display:flex;justify-content:center;align-items:center;min-height:80px;overflow:auto}
-#qrOut svg,#qrOut img{max-width:100%;height:auto;background:#fff;padding:7px;border-radius:10px;border:1px solid var(--line)}
-@media(max-width:620px){
-  .event{
-    grid-template-columns:1fr auto!important;
-    grid-template-areas:"time action" "content content"!important;
-  }
-  .event>.check{justify-self:end}
-}
-
-@media(max-width:780px){.qrwrap{grid-template-columns:1fr}}
-
-@media(max-width:780px){.heroInner{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr 1fr}.transport{grid-template-columns:1fr}.sectionHead{align-items:flex-start;flex-direction:column}.form{grid-template-columns:1fr}.wide{grid-column:auto}.checklist{grid-template-columns:1fr}}
-@media(max-width:520px){.quick,.cards{grid-template-columns:1fr}.event{grid-template-columns:62px 1fr;padding:14px 12px}.wrap{width:min(100% - 20px,1080px)}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#7f1d2d">
+  <meta name="description" content="Offline PWA průvodce pro adventní výlet do Drážďan 5.–6. 12. 2026">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./app.css">
+  <title>Drážďany 2026 · adventní průvodce</title>
 </head>
 <body>
-<div class="overlay hidden" id="introOverlay" aria-modal="true" role="dialog" aria-labelledby="introTitle">
-  <div class="modal">
-    <img class="coverimg" src="./invite.jpg" alt="Pozvánka na adventní výlet do Drážďan">
-    <div class="modbody">
-      <div class="eyebrow" style="color:var(--wine)">Vítejte</div>
-      <h2 id="introTitle">Adventní průvodce je připraven</h2>
-      <p>Na prvním vstupu se zobrazí tato pozvánka. Po odkliknutí ji znovu najdete přes tlačítko <b>Pozvánka</b> v hlavičce aplikace.</p>
-      <div class="center"><button class="btn" id="enterApp" type="button">Vstoupit do průvodce</button></div>
+  <div class="overlay hidden" id="introOverlay" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+    <div class="modal">
+      <img class="coverimg" src="./invite.jpg" alt="Pozvánka na adventní výlet do Drážďan">
+      <div class="modalBody">
+        <div class="eyebrow wine">Vítejte</div>
+        <h2 id="introTitle">Adventní výlet do Drážďan</h2>
+        <p>5.–6. prosince 2026 · Stollenfest · Striezelmarkt · vánoční trhy.</p>
+        <button class="btn" id="enterApp" type="button">Vstoupit do průvodce</button>
+      </div>
     </div>
   </div>
-</div>
-<header class="hero">
-  <div class="wrap heroInner">
-    <div><div class="eyebrow">5.–6. prosince 2026 · 2 dospělí</div><h1>Adventní Drážďany</h1><p class="lead">Stollenfest, Striezelmarkt, Neumarkt a středověký Stallhof. Pohodové tempo, MHD a příručka, která funguje i offline.</p><div class="headerActions"><button class="ghostbtn" id="showInvite" type="button">Pozvánka</button></div></div>
-    <div class="statusbox"><div class="count" id="countdown">Načítám odpočet…</div><div class="online"><i class="dot" id="dot"></i><span id="net">zjišťuji připojení</span></div><div class="build">build 2026-10-02.5</div><div><button id="forceUpdate" type="button">Načíst aktuální verzi</button></div><button class="install hidden" id="install">Nainstalovat aplikaci</button></div>
-  </div>
-</header>
 
-<nav class="nav"><div class="wrap navrow">
-  <button class="active" data-go="plan">Itinerář</button><button data-go="markets">Trhy</button><button data-go="transport">MHD</button><button data-go="map">Mapa</button><button data-go="private">Moje data</button>
-</div></nav>
-
-<main class="wrap">
-<section class="quick" aria-label="Rychlé informace">
-  <div class="q"><b>🚆 Praha → Dresden</b><span>So 08:31 → 10:50 · rj 178</span></div>
-  <div class="q"><b>🎄 Hlavní akce</b><span>Stollenfest + Striezelmarkt</span></div>
-  <div class="q"><b>🚌 Ubytování</b><span>Leubnitz · spojení autobusem 68</span></div>
-  <div class="q"><b>🚆 Dresden → Praha</b><span>Ne 15:10 → 17:25 · rj 383</span></div>
-</section>
-
-<section id="plan" class="section">
-  <div class="sectionHead"><div><div class="eyebrow" style="color:var(--wine)">Hlavní plán</div><h2>Itinerář bez stresu</h2></div><div class="daytabs"><button class="active" data-day="sat">Sobota 5. 12.</button><button data-day="sun">Neděle 6. 12.</button></div></div>
-  <div class="notice"><b>Pevné body:</b> vlaky, Stollenfest a checkout. Všechno ostatní je orientační. Když je někde dobře, zůstaňte déle.</div>
-
-  <div class="timeline" id="sat">
-    <article class="event" data-id="s1" data-start="2026-12-05T08:31:00+01:00" data-end="2026-12-05T10:50:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">08:31–10:50</div><div><h3>Vlak Praha → Dresden Hbf</h3><p>rj 178, přímý spoj. Na hlavním nádraží být ideálně kolem 08:00.</p></div></article>
-    <article class="event" data-id="s2" data-start="2026-12-05T10:50:00+01:00" data-end="2026-12-05T11:10:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">10:50–11:10</div><div><h3>Zavazadla na Hbf</h3><p>Nejezdit hned na ubytování. Dejte zavazadla do skříňky a pokračujte rovnou do centra.</p><div class="row"><a class="linkbtn" href="https://www.bahnhof.de/en/dresden-hbf/locker" target="_blank" rel="noopener">Skříňky DB ↗</a></div></div></article>
-    <article class="event accent" data-id="s3" data-start="2026-12-05T11:10:00+01:00" data-end="2026-12-05T12:30:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">11:10–12:30</div><div><h3>Stollenfest — priorita č. 1</h3><p>Průvod startuje kolem 11:00. Směřujte ke Kulturpalastu, kam se průvod vrací přibližně kolem poledne; následuje krájení obří štoly a prodej porcí.</p><div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kulturpalast+Dresden" target="_blank" rel="noopener">Navigovat</a><a class="linkbtn" href="https://www.dresdnerstollen.com/stollenfest-schutzverband-dresdner-stollen-e-v/" target="_blank" rel="noopener">Program ↗</a></div></div></article>
-    <article class="event" data-id="s4" data-start="2026-12-05T12:30:00+01:00" data-end="2026-12-05T14:00:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">12:30–14:00</div><div><h3>Striezelmarkt + oběd ze stánků</h3><p>Altmarkt je kousek od Kulturpalastu. První svařák, Handbrot, Bratwurst nebo Kartoffelpuffer. Trh zatím jen zlehka — večer bude lepší atmosféra.</p></div></article>
-    <article class="event" data-id="s5" data-start="2026-12-05T14:00:00+01:00" data-end="2026-12-05T15:20:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">14:00–15:20</div><div><h3>Pomalý okruh Starým Městem</h3><p><b>Altmarkt → Neumarkt → Frauenkirche → Fürstenzug → Stallhof → Theaterplatz → Semperoper → Zwinger.</b> Zhruba 2 km, bez muzeí a bez spěchu.</p></div></article>
-    <article class="event" data-id="s6" data-start="2026-12-05T15:20:00+01:00" data-end="2026-12-05T17:00:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">15:20–17:00</div><div><h3>Leubnitz, check-in a pauza</h3><p>Vyzvednout zavazadla podle potřeby, MHD na ubytování a 45–60 minut klidu. Přesnou adresu si uložte do soukromé sekce níže.</p></div></article>
-    <article class="event accent" data-id="s7" data-start="2026-12-05T17:00:00+01:00" data-end="2026-12-05T21:30:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">17:00–21:30</div><div><h3>Hlavní adventní večer</h3><p><b>Striezelmarkt → Neumarkt → Stallhof → Frauenkirche / Münzgasse.</b> Pokud zbude chuť, přes Augustusbrücke na Augustusmarkt.</p></div></article>
-    <article class="event" data-id="s8" data-start="2026-12-05T21:30:00+01:00" data-end="2026-12-05T22:30:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">cca 21:30</div><div><h3>Návrat na ubytování</h3><p>MHD zpět do Leubnitz. Pak už jen teplo a odpočinek.</p></div></article>
-  </div>
-
-  <div class="timeline hidden" id="sun">
-    <article class="event" data-id="n1" data-start="2026-12-06T08:30:00+01:00" data-end="2026-12-06T10:30:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">08:30–10:30</div><div><h3>Snídaně, balení, klidné ráno</h3><p>Nikam nespěchat. Checkout je do 11:00.</p></div></article>
-    <article class="event" data-id="n2" data-start="2026-12-06T10:30:00+01:00" data-end="2026-12-06T11:15:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">10:30–11:15</div><div><h3>Checkout → Hbf → úschovna</h3><p>Zavazadla nechat na nádraží, poslední část dne projít nalehko.</p></div></article>
-    <article class="event accent" data-id="n3" data-start="2026-12-06T11:15:00+01:00" data-end="2026-12-06T13:20:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">11:15–13:20</div><div><h3>Nedělní trhy</h3><p>Podle nálady doplnit, co jste nestihli: <b>Frauenkirche / Münzgasse, Neumarkt, Stallhof</b>, případně <b>Augustusmarkt</b>.</p></div></article>
-    <article class="event" data-id="n4" data-start="2026-12-06T13:20:00+01:00" data-end="2026-12-06T14:10:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">13:20–14:10</div><div><h3>Oběd</h3><p>Primárně znovu stánky. Když budete chtít sednout do tepla, jako rezervní variantu zkuste <b>Platzhirsch am Schlosseck</b> v centru — před cestou ověřte nedělní otevírací dobu.</p><div class="row"><a class="linkbtn" href="https://www.google.com/maps/search/?api=1&query=Platzhirsch+am+Schlosseck+Dresden" target="_blank" rel="noopener">Mapa restaurace ↗</a></div></div></article>
-    <article class="event" data-id="n5" data-start="2026-12-06T14:10:00+01:00" data-end="2026-12-06T14:40:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">14:10–14:40</div><div><h3>Zpět na Dresden Hbf</h3><p>Vyzvednout zavazadla, koupit pití na cestu a být u nástupiště s rezervou.</p></div></article>
-    <article class="event" data-id="n6" data-start="2026-12-06T15:10:00+01:00" data-end="2026-12-06T17:25:00+01:00"><button class="check" type="button" aria-label="Označit tento bod jako hotový">Hotovo</button><div class="time">15:10–17:25</div><div><h3>Vlak Dresden Hbf → Praha</h3><p>rj 383, přímý spoj. Příjezd Praha hl. n. 17:25.</p></div></article>
-  </div>
-</section>
-
-<section id="markets" class="section">
-  <div class="sectionHead"><div><div class="eyebrow" style="color:var(--wine)">Co stojí za to</div><h2>Vánoční trhy</h2></div><span class="pill">5 hlavních zastávek</span></div>
-  <div class="cards">
-    <article class="card"><span class="badge">MUST</span><h3>Striezelmarkt</h3><small>Altmarkt</small><p>Hlavní drážďanský vánoční trh. Klasická atmosféra, štola, řemesla a večerní světla.</p><a href="https://striezelmarkt.dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-    <article class="card"><span class="badge">TOP</span><h3>Advent auf dem Neumarkt</h3><small>Neumarkt / Frauenkirche</small><p>Historizující trh v nejhezčí kulise historického centra.</p><a href="https://www.adventaufdemneumarkt.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-    <article class="card"><span class="badge">TOP</span><h3>Mittelalter-Weihnacht</h3><small>Stallhof</small><p>Středověký trh v nádvoří zámku, oheň, řemesla a výrazně jiná atmosféra než na Altmarktu.</p><a href="https://www.mittelalter-weihnacht.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-    <article class="card"><span class="badge">TOP</span><h3>Frauenkirche / Münzgasse</h3><small>mezi Frauenkirche a Brühlskou terasou</small><p>Úzká osvětlená ulice, dobrá na večerní průchod a fotografie.</p><a href="https://www.weihnachtsmarkt-dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-    <article class="card"><span class="badge">BONUS</span><h3>Augustusmarkt</h3><small>Neustadt</small><p>Modernější a mezinárodnější trh. Zařadit, pokud budete mít v sobotu večer energii.</p><a href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener">Mapa ↗</a></article>
-  </div>
-</section>
-
-<section id="transport" class="section">
-  <div class="sectionHead"><div><div class="eyebrow" style="color:var(--wine)">Pohyb po městě</div><h2>MHD</h2></div></div>
-  <div class="transport">
-    <div class="card"><span class="badge">DOPORUČENO</span><h3>Familientageskarte · 1 tarifní zóna</h3><div class="price">€14,40 <small>/ den za oba</small></div><p>Tarif známý k 2. 10. 2026. Pro dva dospělé vychází pohodlně koupit jednu rodinnou denní jízdenku na sobotu a druhou na neděli, tedy celkem €28,80.</p><a class="btn" href="https://www.dvb.de/cs-cz/jizdenky/turiste" target="_blank" rel="noopener">Tarif DVB ↗</a></div>
-    <div class="card"><h3>Zapamatujte si linku 68</h3><div class="route"><span>Leubnitz</span><b>68</b><span>Prager Straße</span><span>Postplatz</span></div><p>Pro spojení ubytování s centrem. Konkrétní prosincové odjezdy vždy ověřte v DVB, protože výluky a adventní provoz se mohou měnit.</p><a class="btn" href="https://www.dvb.de/de-de/fahrplan" target="_blank" rel="noopener">Vyhledat spoj ↗</a></div>
-  </div>
-</section>
-
-<section id="map" class="section">
-  <div class="sectionHead"><div><div class="eyebrow" style="color:var(--wine)">Offline orientace</div><h2>Schematická mapa</h2></div><span class="pill">funguje bez internetu</span></div>
-  <div class="mapbox">
-  <svg viewBox="0 0 900 500" role="img" aria-label="Schematická mapa hlavních bodů">
-    <path class="river" d="M0 155 C180 120 300 200 470 160 S720 95 900 135"/>
-    <path class="road" d="M440 430 L430 330 L420 260 L390 210 L350 185"/>
-    <path class="road dash" d="M390 210 L470 145 L540 92"/>
-    <path class="road" d="M440 430 L650 455"/>
-    <g class="pin"><circle cx="440" cy="430" r="17"/><text class="num" x="440" y="436">1</text><text class="label" x="465" y="437">Dresden Hbf</text></g>
-    <g class="pin"><circle cx="420" cy="260" r="17"/><text class="num" x="420" y="266">2</text><text class="label" x="445" y="266">Altmarkt / Striezelmarkt</text></g>
-    <g class="pin"><circle cx="390" cy="210" r="17"/><text class="num" x="390" y="216">3</text><text class="label" x="415" y="216">Neumarkt / Frauenkirche</text></g>
-    <g class="pin"><circle cx="350" cy="185" r="17"/><text class="num" x="350" y="191">4</text><text class="label" x="235" y="164">Stallhof</text></g>
-    <g class="pin"><circle cx="540" cy="92" r="17"/><text class="num" x="540" y="98">5</text><text class="label" x="565" y="98">Augustusmarkt</text></g>
-    <g class="pin"><circle cx="650" cy="455" r="17"/><text class="num" x="650" y="461">6</text><text class="label" x="675" y="461">Leubnitz</text></g>
-  </svg>
-  </div>
-</section>
-
-<section id="private" class="section">
-  <div class="sectionHead"><div><div class="eyebrow" style="color:var(--wine)">Pouze v tomto telefonu</div><h2>Moje soukromé údaje</h2></div><span class="pill">JSON + QR přenos</span></div>
-  <div class="privacy">
-    <p>Veřejná stránka záměrně neobsahuje přesnou adresu Airbnb, rezervační kódy ani kontaktní údaje. Můžete je uložit do <b>localStorage</b> tohoto zařízení a vědomě přenést do druhého telefonu pomocí JSON nebo QR kódu.</p>
-    <form class="form" id="privateForm">
-      <label>Přesná adresa ubytování<input id="pAddress" autocomplete="off"></label>
-      <label>Airbnb / booking kód<input id="pBooking" autocomplete="off"></label>
-      <label>Hostitel<input id="pHostName" autocomplete="off"></label>
-      <label>Telefon / kontakt<input id="pPhone" autocomplete="off"></label>
-      <label>Check-in<input id="pCheckIn" autocomplete="off"></label>
-      <label>Checkout<input id="pCheckOut" autocomplete="off"></label>
-      <label>Vlak tam<input id="pTrainOut" autocomplete="off"></label>
-      <label>Vlak zpět<input id="pTrainBack" autocomplete="off"></label>
-      <label class="wide">Poznámky<textarea id="pNotes" rows="4"></textarea></label>
-      <div class="wide stack">
-        <button class="btn" type="submit" style="border:0">Uložit do telefonu</button>
-        <button class="linkbtn" id="exportJson" type="button" style="border:0">Exportovat JSON</button>
-        <button class="linkbtn" id="makeQr" type="button" style="border:0">Vygenerovat QR kód</button>
-        <button class="linkbtn" id="clear" type="button" style="border:0">Smazat data</button>
-      </div>
-    </form>
-  </div>
-  <div class="sharebox">
-    <h3 style="margin-top:0">Přenesení mezi telefony</h3>
-    <p class="help">Na prvním telefonu vyplňte údaje a použijte export nebo QR. Na druhém telefonu vložte JSON níže a stiskněte <b>Vložit JSON do aplikace</b>.</p>
-    <div class="qrwrap">
+  <header class="hero">
+    <div class="wrap heroInner">
       <div>
-        <label>JSON pro přenos<textarea id="jsonArea" rows="11" placeholder='{"version":1,"trip":"drazdany2026","privateData":{...}}'></textarea></label>
-        <div class="stack" style="margin-top:9px">
-          <button class="btn" type="button" id="importJson">Vložit JSON do aplikace</button>
-          <button class="linkbtn" type="button" id="copyJson">Kopírovat JSON</button>
+        <div class="eyebrow">5.–6. prosince 2026 · 2 dospělí</div>
+        <h1>Adventní Drážďany</h1>
+        <p class="lead">Pohodový adventní víkend se Stollenfestem, Striezelmarktem a dalšími trhy. Příručka funguje i offline.</p>
+      </div>
+      <div class="heroSide">
+        <div class="count" id="countdown">Načítám odpočet…</div>
+        <details class="menu" id="appMenu">
+          <summary aria-label="Otevřít nabídku">☰</summary>
+          <div class="menuPanel">
+            <button type="button" id="showInvite">🎄 Pozvánka</button>
+            <button type="button" id="forceUpdate">↻ Načíst aktuální verzi</button>
+            <button type="button" id="resetProgress">⟳ Resetovat označení Hotovo</button>
+            <button type="button" id="clearPrivateMenu">🗑 Smazat soukromá data</button>
+            <button type="button" class="hidden" id="install">📲 Nainstalovat aplikaci</button>
+            <div class="diag">
+              <div><b>Verze:</b> <span id="diagVersion">2026.10.03-v6</span></div>
+              <div><b>Síť:</b> <span id="diagNetwork">—</span></div>
+              <div><b>Service worker:</b> <span id="diagSw">—</span></div>
+              <div><b>Privátní data:</b> <span id="diagPrivate">—</span></div>
+              <div><b>QR knihovna:</b> <span id="diagQr">—</span></div>
+              <div id="diagErrors" class="errorText"></div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap navrow">
+      <button class="active" data-go="plan">Itinerář</button>
+      <button data-go="markets">Trhy</button>
+      <button data-go="transport">MHD</button>
+      <button data-go="map">Mapa</button>
+      <button data-go="private">Moje data</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="quick" aria-label="Rychlé informace">
+      <div class="q"><b>🚆 Praha → Dresden</b><span>So 08:31 → 10:50 · rj 178</span></div>
+      <div class="q"><b>🎄 Hlavní akce</b><span>Stollenfest + Striezelmarkt</span></div>
+      <div class="q"><b>🚌 Ubytování</b><span>Leubnitz · MHD do centra</span></div>
+      <div class="q"><b>🚆 Dresden → Praha</b><span>Ne 15:10 → 17:25 · rj 383</span></div>
+    </section>
+
+    <section id="privateSummary" class="tripCard hidden" aria-live="polite">
+      <div class="tripCardHead">
+        <div><div class="eyebrow wine">Soukromé údaje načteny</div><h2>Moje cesta</h2></div>
+        <button type="button" class="linkbtn" data-go="private">Upravit</button>
+      </div>
+      <div class="tripGrid">
+        <div><b>🏠 Ubytování</b><span id="sumAddress">—</span><small id="sumStay">—</small></div>
+        <div><b>👤 Hostitel</b><span id="sumHost">—</span><small id="sumBooking">—</small></div>
+        <div><b>🚆 Tam</b><span id="sumTrainOut">—</span></div>
+        <div><b>🚆 Zpět</b><span id="sumTrainBack">—</span></div>
+      </div>
+    </section>
+
+    <section id="plan" class="section">
+      <div class="sectionHead">
+        <div><div class="eyebrow wine">Hlavní plán</div><h2>Itinerář bez stresu</h2></div>
+        <div class="daytabs">
+          <button class="active" data-day="sat">Sobota 5. 12.</button>
+          <button data-day="sun">Neděle 6. 12.</button>
         </div>
       </div>
-      <div class="qrbox">
-        <div style="font-weight:800;margin-bottom:8px">QR kód</div>
-        <div id="qrOut" class="hidden" aria-label="QR kód pro sdílení soukromých údajů"></div>
-        <p id="qrHint" class="help">QR se generuje přímo v telefonu a funguje i offline. Soukromá data se neposílají žádné QR službě.</p>
+      <div class="notice"><b>Pevné body:</b> vlaky, Stollenfest a checkout. Ostatní časy jsou orientační.</div>
+
+      <div class="timeline" id="sat">
+        <article class="event" data-id="s1" data-start="2026-12-05T08:31:00+01:00" data-end="2026-12-05T10:50:00+01:00">
+          <div class="eventHeader"><span class="time">08:31–10:50</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Vlak Praha → Dresden Hbf</h3><p>rj 178, přímý spoj. Na nádraží být ideálně kolem 08:00.</p><div class="privateInline hidden" id="outboundPrivate"></div></div>
+        </article>
+        <article class="event" data-id="s2" data-start="2026-12-05T10:50:00+01:00" data-end="2026-12-05T11:10:00+01:00">
+          <div class="eventHeader"><span class="time">10:50–11:10</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Zavazadla na Hbf</h3><p>Nejezdit hned na ubytování. Zavazadla dát do skříňky a pokračovat rovnou do centra.</p><div class="row"><a class="linkbtn" href="https://www.bahnhof.de/en/dresden-hbf/locker" target="_blank" rel="noopener">Skříňky DB ↗</a></div></div>
+        </article>
+        <article class="event accent" data-id="s3" data-start="2026-12-05T11:10:00+01:00" data-end="2026-12-05T12:30:00+01:00">
+          <div class="eventHeader"><span class="time">11:10–12:30</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Stollenfest — priorita č. 1</h3><p>Směřovat ke Kulturpalastu; kolem poledne návrat průvodu, krájení obří štoly a prodej porcí.</p><div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kulturpalast+Dresden" target="_blank" rel="noopener">Navigovat</a><a class="linkbtn" href="https://www.dresdnerstollen.com/stollenfest-schutzverband-dresdner-stollen-e-v/" target="_blank" rel="noopener">Program ↗</a></div></div>
+        </article>
+        <article class="event" data-id="s4" data-start="2026-12-05T12:30:00+01:00" data-end="2026-12-05T14:00:00+01:00">
+          <div class="eventHeader"><span class="time">12:30–14:00</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Striezelmarkt + oběd ze stánků</h3><p>První svařák, Handbrot, Bratwurst nebo Kartoffelpuffer. Hlavní večerní návštěvu nechat na později.</p></div>
+        </article>
+        <article class="event" data-id="s5" data-start="2026-12-05T14:00:00+01:00" data-end="2026-12-05T15:20:00+01:00">
+          <div class="eventHeader"><span class="time">14:00–15:20</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Pomalý okruh Starým Městem</h3><p><b>Altmarkt → Neumarkt → Frauenkirche → Fürstenzug → Stallhof → Theaterplatz → Semperoper → Zwinger.</b></p></div>
+        </article>
+        <article class="event" data-id="s6" data-start="2026-12-05T15:20:00+01:00" data-end="2026-12-05T17:00:00+01:00">
+          <div class="eventHeader"><span class="time">15:20–17:00</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Leubnitz, check-in a pauza</h3><p>Vyzvednout zavazadla, MHD na ubytování a krátký odpočinek.</p><div class="privateInline hidden" id="stayPrivate"></div></div>
+        </article>
+        <article class="event accent" data-id="s7" data-start="2026-12-05T17:00:00+01:00" data-end="2026-12-05T21:30:00+01:00">
+          <div class="eventHeader"><span class="time">17:00–21:30</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Hlavní adventní večer</h3><p><b>Striezelmarkt → Neumarkt → Stallhof → Frauenkirche / Münzgasse.</b> Pokud zbude energie, Augustusmarkt.</p></div>
+        </article>
+        <article class="event" data-id="s8" data-start="2026-12-05T21:30:00+01:00" data-end="2026-12-05T22:30:00+01:00">
+          <div class="eventHeader"><span class="time">cca 21:30</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Návrat na ubytování</h3><p>MHD zpět do Leubnitz.</p></div>
+        </article>
       </div>
-    </div>
-  </div>
-</section>
 
-<section class="section">
-  <div class="sectionHead"><h2>Kontrola před odjezdem</h2></div>
-  <div class="checklist" id="checklist">
-    <label><input type="checkbox" data-c="tickets"> Jízdenky ČD dostupné offline</label>
-    <label><input type="checkbox" data-c="coins"> Euromince / karta pro úschovu</label>
-    <label><input type="checkbox" data-c="dvb"> DVB po ruce</label>
-    <label><input type="checkbox" data-c="power"> Powerbanka nabitá</label>
-    <label><input type="checkbox" data-c="warm"> Teplé vrstvy + rukavice</label>
-    <label><input type="checkbox" data-c="pwa"> Tato PWA otevřená offline alespoň jednou</label>
-  </div>
-</section>
+      <div class="timeline hidden" id="sun">
+        <article class="event" data-id="n1" data-start="2026-12-06T08:30:00+01:00" data-end="2026-12-06T10:30:00+01:00">
+          <div class="eventHeader"><span class="time">08:30–10:30</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Snídaně, balení, klidné ráno</h3><p>Nikam nespěchat. Checkout do 11:00.</p><div class="privateInline hidden" id="checkoutPrivate"></div></div>
+        </article>
+        <article class="event" data-id="n2" data-start="2026-12-06T10:30:00+01:00" data-end="2026-12-06T11:15:00+01:00">
+          <div class="eventHeader"><span class="time">10:30–11:15</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Checkout → Hbf → úschovna</h3><p>Zavazadla nechat na nádraží, poslední část dne projít nalehko.</p></div>
+        </article>
+        <article class="event accent" data-id="n3" data-start="2026-12-06T11:15:00+01:00" data-end="2026-12-06T13:20:00+01:00">
+          <div class="eventHeader"><span class="time">11:15–13:20</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Nedělní trhy</h3><p>Doplnit, co jste nestihli: Frauenkirche / Münzgasse, Neumarkt, Stallhof, případně Augustusmarkt.</p></div>
+        </article>
+        <article class="event" data-id="n4" data-start="2026-12-06T13:20:00+01:00" data-end="2026-12-06T14:10:00+01:00">
+          <div class="eventHeader"><span class="time">13:20–14:10</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Oběd</h3><p>Primárně stánky. Rezervní varianta: <b>Platzhirsch am Schlosseck</b>.</p><div class="row"><a class="linkbtn" href="https://www.google.com/maps/search/?api=1&query=Platzhirsch+am+Schlosseck+Dresden" target="_blank" rel="noopener">Restaurace ↗</a></div></div>
+        </article>
+        <article class="event" data-id="n5" data-start="2026-12-06T14:10:00+01:00" data-end="2026-12-06T14:40:00+01:00">
+          <div class="eventHeader"><span class="time">14:10–14:40</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Zpět na Dresden Hbf</h3><p>Vyzvednout zavazadla a být u nástupiště s rezervou.</p></div>
+        </article>
+        <article class="event" data-id="n6" data-start="2026-12-06T15:10:00+01:00" data-end="2026-12-06T17:25:00+01:00">
+          <div class="eventHeader"><span class="time">15:10–17:25</span><button class="check" type="button">○ Hotovo</button></div>
+          <div class="eventBody"><h3>Vlak Dresden Hbf → Praha</h3><p>rj 383, přímý spoj. Příjezd Praha hl. n. 17:25.</p><div class="privateInline hidden" id="returnPrivate"></div></div>
+        </article>
+      </div>
+    </section>
 
-<section class="section"><details class="card"><summary><b>Zdroje a stav informací</b></summary><p>Časy vlaků a check-in/out vycházejí z rezervací pro tento výlet. Veřejné informace byly sestaveny z oficiálních zdrojů DVB, DB Bahnhof, Dresdner Stollenfest, Striezelmarkt, Advent auf dem Neumarkt, Mittelalter-Weihnacht im Stallhof a Weihnachtsmarkt an der Frauenkirche. Jízdní řády, ceny a otevírací doby mohou být do prosince upraveny.</p></details></section>
-</main>
+    <section id="markets" class="section">
+      <div class="sectionHead"><div><div class="eyebrow wine">Co stojí za to</div><h2>Vánoční trhy</h2></div><span class="pill">5 hlavních zastávek</span></div>
+      <div class="cards">
+        <article class="card"><span class="badge">MUST</span><h3>Striezelmarkt</h3><small>Altmarkt</small><p>Hlavní drážďanský vánoční trh.</p><a href="https://striezelmarkt.dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
+        <article class="card"><span class="badge">TOP</span><h3>Advent auf dem Neumarkt</h3><small>Neumarkt / Frauenkirche</small><p>Historizující trh v kulise historického centra.</p><a href="https://www.adventaufdemneumarkt.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
+        <article class="card"><span class="badge">TOP</span><h3>Mittelalter-Weihnacht</h3><small>Stallhof</small><p>Středověký trh v nádvoří zámku.</p><a href="https://www.mittelalter-weihnacht.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
+        <article class="card"><span class="badge">TOP</span><h3>Frauenkirche / Münzgasse</h3><small>okolí Frauenkirche</small><p>Večerní světla a příjemná atmosféra.</p><a href="https://www.weihnachtsmarkt-dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
+        <article class="card"><span class="badge">BONUS</span><h3>Augustusmarkt</h3><small>Neustadt</small><p>Modernější a mezinárodnější trh.</p><a href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener">Mapa ↗</a></article>
+      </div>
+    </section>
 
-<footer class="footer"><div class="wrap"><b>Drážďany 2026</b><br><small>offline travel guide · soukromé údaje zůstávají v tomto prohlížeči</small></div></footer>
+    <section id="transport" class="section">
+      <div class="sectionHead"><div><div class="eyebrow wine">Pohyb po městě</div><h2>MHD</h2></div></div>
+      <div class="transport">
+        <div class="card"><span class="badge">DOPORUČENO</span><h3>Familientageskarte · 1 tarifní zóna</h3><div class="price">€14,40 <small>/ den za oba</small></div><p>Pro dva dospělé vychází jednoduše koupit jednu rodinnou denní jízdenku na každý den.</p><a class="btn" href="https://www.dvb.de/cs-cz/jizdenky/turiste" target="_blank" rel="noopener">Tarif DVB ↗</a></div>
+        <div class="card"><h3>Linka 68</h3><div class="route"><span>Leubnitz</span><b>68</b><span>Prager Straße</span><span>Postplatz</span></div><p>Konkrétní prosincové odjezdy ověřit v DVB.</p><a class="btn" href="https://www.dvb.de/de-de/fahrplan" target="_blank" rel="noopener">Vyhledat spoj ↗</a></div>
+      </div>
+    </section>
 
-<script src="./qrcode.js"></script>
-<script>
-const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)], K='dresden26:';
-function net(){const on=navigator.onLine;$('#net').textContent=on?'online · externí odkazy fungují':'offline · příručka je dostupná';$('#dot').classList.toggle('ok',on)} addEventListener('online',net);addEventListener('offline',net);net();
-function count(){const d=new Date('2026-12-05T08:31:00+01:00')-new Date();if(d<=0){$('#countdown').textContent='Výlet právě běží nebo už proběhl';return}const days=Math.floor(d/864e5),h=Math.floor(d%864e5/36e5);$('#countdown').textContent='Odjezd za '+days+' dní a '+h+' h'}count();setInterval(count,3600000);
-$$('.nav button').forEach(b=>b.onclick=()=>{document.getElementById(b.dataset.go).scrollIntoView({behavior:'smooth'});$$('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
-$$('.daytabs button').forEach(b=>b.onclick=()=>{$$('.daytabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#sat').classList.toggle('hidden',b.dataset.day!=='sat');$('#sun').classList.toggle('hidden',b.dataset.day!=='sun')});
-$('.event').forEach(e=>{const b=$('.check',e);if(localStorage.getItem(K+e.dataset.id)==='1')e.classList.add('done');b.textContent=e.classList.contains('done')?'Splněno':'Hotovo';b.onclick=()=>{e.classList.toggle('done');const done=e.classList.contains('done');localStorage.setItem(K+e.dataset.id,done?'1':'0');b.textContent=done?'Splněno':'Hotovo'}});
-function markNow(){const n=Date.now();$$('.event').forEach(e=>e.classList.toggle('now',n>=Date.parse(e.dataset.start)&&n<Date.parse(e.dataset.end)))}markNow();setInterval(markNow,60000);
-$$('#checklist input').forEach(c=>{c.checked=localStorage.getItem(K+'c:'+c.dataset.c)==='1';c.onchange=()=>localStorage.setItem(K+'c:'+c.dataset.c,c.checked?'1':'0')});
-const pf=['pAddress','pBooking','pHostName','pPhone','pCheckIn','pCheckOut','pTrainOut','pTrainBack','pNotes'];
-function readPrivate(){const d={};pf.forEach(id=>d[id.replace(/^p/,'').replace(/^[A-Z]/,m=>m.toLowerCase())]=$('#'+id).value.trim());return d}
-function fillPrivate(d={}){const map={address:'pAddress',booking:'pBooking',hostName:'pHostName',phone:'pPhone',checkIn:'pCheckIn',checkOut:'pCheckOut',trainOut:'pTrainOut',trainBack:'pTrainBack',notes:'pNotes'};Object.entries(map).forEach(([k,id])=>$('#'+id).value=d[k]??'')}
-function savePrivate(){const d=readPrivate();localStorage.setItem(K+'private',JSON.stringify(d));return d}
-function loadPrivate(){try{const saved=JSON.parse(localStorage.getItem(K+'private')||'{}');if(Object.keys(saved).length){fillPrivate(saved);return}const legacy={address:localStorage.getItem(K+'pAddress')||'',booking:localStorage.getItem(K+'pBooking')||'',phone:localStorage.getItem(K+'pPhone')||'',notes:localStorage.getItem(K+'pNotes')||''};if(Object.values(legacy).some(Boolean)){fillPrivate(legacy);savePrivate()}}catch(e){}}
-loadPrivate();
-$('#privateForm').onsubmit=e=>{e.preventDefault();savePrivate();const b=$('#privateForm button[type=submit]');const t=b.textContent;b.textContent='Uloženo ✓';setTimeout(()=>b.textContent=t,1300)};
-$('#clear').onclick=()=>{if(confirm('Smazat lokálně uložené soukromé údaje?')){localStorage.removeItem(K+'private');fillPrivate();$('#jsonArea').value='';$('#qrOut').classList.add('hidden');$('#qrOut').innerHTML=''}};
-function buildPayload(){return {version:1,trip:'drazdany2026',privateData:savePrivate()}}
-function exportJson(){const t=JSON.stringify(buildPayload(),null,2);$('#jsonArea').value=t;return t}
-$('#exportJson').onclick=()=>{exportJson();$('#jsonArea').scrollIntoView({behavior:'smooth',block:'center'})};
-$('#copyJson').onclick=async()=>{const t=$('#jsonArea').value||exportJson();try{await navigator.clipboard.writeText(t);const b=$('#copyJson');b.textContent='Zkopírováno ✓';setTimeout(()=>b.textContent='Kopírovat JSON',1300)}catch(e){$('#jsonArea').focus();$('#jsonArea').select()}};
-$('#importJson').onclick=()=>{try{const obj=JSON.parse($('#jsonArea').value);const d=obj.privateData||obj;fillPrivate(d);savePrivate();alert('JSON byl uložen do aplikace.')}catch(e){alert('JSON se nepodařilo načíst. Zkontrolujte jeho formát.')}};
-$('#makeQr').onclick=()=>{try{const t=exportJson();qrcode.stringToBytes=qrcode.stringToBytesFuncs['UTF-8'];const qr=qrcode(0,'M');qr.addData(t);qr.make();const out=$('#qrOut');out.innerHTML=qr.createSvgTag({cellSize:4,margin:8,scalable:true,alt:'QR kód s privátními daty'});out.classList.remove('hidden');$('#qrHint').textContent='Naskenujte QR druhým telefonem. QR obsahuje stejné JSON jako pole vlevo a byl vytvořen lokálně.'}catch(e){alert('QR se nepodařilo vytvořit: '+e)}};
-let promptEvent;addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptEvent=e;$('#install').classList.remove('hidden')});$('#install').onclick=async()=>{if(!promptEvent)return;promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;$('#install').classList.add('hidden')};
-function showIntro(){$('#introOverlay').classList.remove('hidden');document.body.style.overflow='hidden'}
-function hideIntro(remember=true){$('#introOverlay').classList.add('hidden');document.body.style.overflow='';if(remember)localStorage.setItem(K+'introSeen','1')}
-if(!localStorage.getItem(K+'introSeen'))showIntro();
-$('#enterApp').onclick=()=>hideIntro(true);
-$('#showInvite').onclick=()=>showIntro();
-$('#introOverlay').addEventListener('click',e=>{if(e.target.id==='introOverlay')hideIntro(false)});
-$('#forceUpdate').onclick=async()=>{try{if('serviceWorker'in navigator){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()))}if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}location.replace('./?refresh='+Date.now())}catch(e){location.reload()}};
-if('serviceWorker'in navigator){
-  let reloading=false;
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloading){reloading=true;location.reload()}});
-  addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});await reg.update()}catch(e){console.warn('SW update failed',e)}});
-}
-</script>
-</body></html>
+    <section id="map" class="section">
+      <div class="sectionHead"><div><div class="eyebrow wine">Offline orientace</div><h2>Schematická mapa</h2></div><span class="pill">funguje bez internetu</span></div>
+      <div class="mapbox">
+        <svg viewBox="0 0 900 500" role="img" aria-label="Schematická mapa hlavních bodů">
+          <path class="river" d="M0 155 C180 120 300 200 470 160 S720 95 900 135"/>
+          <path class="road" d="M440 430 L430 330 L420 260 L390 210 L350 185"/>
+          <path class="road dash" d="M390 210 L470 145 L540 92"/>
+          <path class="road" d="M440 430 L650 455"/>
+          <g class="pin"><circle cx="440" cy="430" r="17"/><text class="num" x="440" y="436">1</text><text class="label" x="465" y="437">Dresden Hbf</text></g>
+          <g class="pin"><circle cx="420" cy="260" r="17"/><text class="num" x="420" y="266">2</text><text class="label" x="445" y="266">Altmarkt</text></g>
+          <g class="pin"><circle cx="390" cy="210" r="17"/><text class="num" x="390" y="216">3</text><text class="label" x="415" y="216">Neumarkt</text></g>
+          <g class="pin"><circle cx="350" cy="185" r="17"/><text class="num" x="350" y="191">4</text><text class="label" x="235" y="164">Stallhof</text></g>
+          <g class="pin"><circle cx="540" cy="92" r="17"/><text class="num" x="540" y="98">5</text><text class="label" x="565" y="98">Augustusmarkt</text></g>
+          <g class="pin"><circle cx="650" cy="455" r="17"/><text class="num" x="650" y="461">6</text><text class="label" x="675" y="461">Leubnitz</text></g>
+        </svg>
+      </div>
+    </section>
+
+    <section id="private" class="section">
+      <div class="sectionHead"><div><div class="eyebrow wine">Pouze v tomto telefonu</div><h2>Moje soukromé údaje</h2></div><span class="pill">JSON + QR</span></div>
+      <div class="privacy">
+        <form class="form" id="privateForm">
+          <label>Přesná adresa ubytování<input id="pAddress" autocomplete="off"></label>
+          <label>Airbnb / booking kód<input id="pBooking" autocomplete="off"></label>
+          <label>Hostitel<input id="pHostName" autocomplete="off"></label>
+          <label>Telefon / kontakt<input id="pPhone" autocomplete="off"></label>
+          <label>Check-in<input id="pCheckIn" autocomplete="off"></label>
+          <label>Checkout<input id="pCheckOut" autocomplete="off"></label>
+          <label>Vlak tam<input id="pTrainOut" autocomplete="off"></label>
+          <label>Vlak zpět<input id="pTrainBack" autocomplete="off"></label>
+          <label class="wide">Poznámky<textarea id="pNotes" rows="4"></textarea></label>
+          <div class="wide stack">
+            <button class="btn" type="submit">Uložit do telefonu</button>
+            <button class="linkbtn" id="exportJson" type="button">Exportovat JSON</button>
+            <button class="linkbtn" id="makeQr" type="button">Vygenerovat QR kód</button>
+          </div>
+          <div class="wide statusMessage hidden" id="privateStatus" role="status"></div>
+        </form>
+      </div>
+
+      <div class="sharebox">
+        <h3>Přenesení mezi telefony</h3>
+        <p class="help">Vložte JSON do pole a stiskněte <b>Načíst a uložit JSON</b>. Data se hned zobrazí ve formuláři, v kartě „Moje cesta“ i v příslušných bodech itineráře.</p>
+        <div class="qrwrap">
+          <div>
+            <label>JSON pro přenos<textarea id="jsonArea" rows="11" placeholder='{"version":1,"trip":"drazdany2026","privateData":{...}}'></textarea></label>
+            <div class="stack topgap">
+              <button class="btn" type="button" id="importJson">Načíst a uložit JSON</button>
+              <button class="linkbtn" type="button" id="copyJson">Kopírovat JSON</button>
+            </div>
+            <div class="statusMessage hidden" id="jsonStatus" role="status"></div>
+          </div>
+          <div class="qrbox">
+            <div class="qrTitle">QR kód</div>
+            <div id="qrOut" class="hidden" aria-label="QR kód pro sdílení soukromých údajů"></div>
+            <p id="qrHint" class="help">QR se generuje přímo v telefonu a funguje offline.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead"><h2>Kontrola před odjezdem</h2></div>
+      <div class="checklist" id="checklist">
+        <label><input type="checkbox" data-c="tickets"> Jízdenky ČD dostupné offline</label>
+        <label><input type="checkbox" data-c="coins"> Euromince / karta pro úschovu</label>
+        <label><input type="checkbox" data-c="dvb"> DVB po ruce</label>
+        <label><input type="checkbox" data-c="power"> Powerbanka nabitá</label>
+        <label><input type="checkbox" data-c="warm"> Teplé vrstvy + rukavice</label>
+        <label><input type="checkbox" data-c="pwa"> PWA otevřená offline alespoň jednou</label>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap"><b>Drážďany 2026</b><br><small>offline travel guide · soukromé údaje zůstávají v tomto prohlížeči</small></div></footer>
+
+  <script src="./qrcode.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
