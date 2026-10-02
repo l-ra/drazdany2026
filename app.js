@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-var BUILD='2026.10.03-v6';
+var BUILD='2026.10.03-v7';
 var K='dresden26:';
 var errors=[];
 function $(s,r){return (r||document).querySelector(s)}
@@ -30,6 +30,8 @@ function renderPrivate(d){
   var summary=$('#privateSummary');
   if(summary)summary.classList.toggle('hidden',!hasPrivate(d));
   setText('#sumAddress',d.address);
+  var addressMap=$('#sumAddressMap');
+  if(addressMap){if(d.address){addressMap.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(d.address);addressMap.classList.remove('hidden')}else{addressMap.removeAttribute('href');addressMap.classList.add('hidden')}}
   var stay=[d.checkIn&&('Check-in: '+d.checkIn),d.checkOut&&('Checkout: '+d.checkOut)].filter(Boolean).join(' · ');
   setText('#sumStay',stay);
   setText('#sumHost',[d.hostName,d.phone].filter(Boolean).join(' · '));

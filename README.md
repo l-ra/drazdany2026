@@ -2,7 +2,7 @@
 
 Offline PWA průvodce pro adventní výlet do Drážďan **5.–6. prosince 2026**.
 
-## Verze v6
+## Verze v7
 
 Aplikace je rozdělena na:
 - `index.html`
@@ -26,3 +26,7 @@ Hlavní vlastnosti:
 
 GitHub Pages:
 https://l-ra.github.io/drazdany2026/
+
+## Mapové odkazy
+
+Každé konkrétní místo a každá plánovaná trasa v itineráři, trzích, MHD a schematické mapě má přímý odkaz do Google Maps. Privátní adresa ubytování získá mapový odkaz dynamicky po načtení soukromých dat.

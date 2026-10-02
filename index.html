@@ -41,7 +41,7 @@
             <button type="button" id="clearPrivateMenu">🗑 Smazat soukromá data</button>
             <button type="button" class="hidden" id="install">📲 Nainstalovat aplikaci</button>
             <div class="diag">
-              <div><b>Verze:</b> <span id="diagVersion">2026.10.03-v6</span></div>
+              <div><b>Verze:</b> <span id="diagVersion">2026.10.03-v7</span></div>
               <div><b>Síť:</b> <span id="diagNetwork">—</span></div>
               <div><b>Service worker:</b> <span id="diagSw">—</span></div>
               <div><b>Privátní data:</b> <span id="diagPrivate">—</span></div>
@@ -66,10 +66,10 @@
 
   <main class="wrap">
     <section class="quick" aria-label="Rychlé informace">
-      <div class="q"><b>🚆 Praha → Dresden</b><span>So 08:31 → 10:50 · rj 178</span></div>
-      <div class="q"><b>🎄 Hlavní akce</b><span>Stollenfest + Striezelmarkt</span></div>
-      <div class="q"><b>🚌 Ubytování</b><span>Leubnitz · MHD do centra</span></div>
-      <div class="q"><b>🚆 Dresden → Praha</b><span>Ne 15:10 → 17:25 · rj 383</span></div>
+      <div class="q"><b>🚆 Praha → Dresden</b><span>So 08:31 → 10:50 · rj 178</span><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Praha+hlavn%C3%AD+n%C3%A1dra%C5%BE%C3%AD" target="_blank" rel="noopener">📍 Praha hl.n.</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Praha%20hlavn%C3%AD%20n%C3%A1dra%C5%BE%C3%AD&destination=Dresden%20Hauptbahnhof&travelmode=transit" target="_blank" rel="noopener">📍 Trasa</a></div></div>
+      <div class="q"><b>🎄 Hlavní akce</b><span>Stollenfest + Striezelmarkt</span><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Kulturpalast+Dresden" target="_blank" rel="noopener">📍 Kulturpalast</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Striezelmarkt+Dresden" target="_blank" rel="noopener">📍 Striezelmarkt</a></div></div>
+      <div class="q"><b>🚌 Ubytování</b><span>Leubnitz · MHD do centra</span><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Leubnitz+Dresden" target="_blank" rel="noopener">📍 Leubnitz</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Leubnitz%20Dresden&destination=Altmarkt%20Dresden&travelmode=transit" target="_blank" rel="noopener">📍 MHD do centra</a></div></div>
+      <div class="q"><b>🚆 Dresden → Praha</b><span>Ne 15:10 → 17:25 · rj 383</span><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Praha+hlavn%C3%AD+n%C3%A1dra%C5%BE%C3%AD" target="_blank" rel="noopener">📍 Praha hl.n.</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Dresden%20Hauptbahnhof&destination=Praha%20hlavn%C3%AD%20n%C3%A1dra%C5%BE%C3%AD&travelmode=transit" target="_blank" rel="noopener">📍 Trasa</a></div></div>
     </section>
 
     <section id="privateSummary" class="tripCard hidden" aria-live="polite">
@@ -78,7 +78,7 @@
         <button type="button" class="linkbtn" data-go="private">Upravit</button>
       </div>
       <div class="tripGrid">
-        <div><b>🏠 Ubytování</b><span id="sumAddress">—</span><small id="sumStay">—</small></div>
+        <div><b>🏠 Ubytování</b><span id="sumAddress">—</span><small id="sumStay">—</small><a id="sumAddressMap" class="mapbtn hidden" target="_blank" rel="noopener">📍 Mapa ubytování</a></div>
         <div><b>👤 Hostitel</b><span id="sumHost">—</span><small id="sumBooking">—</small></div>
         <div><b>🚆 Tam</b><span id="sumTrainOut">—</span></div>
         <div><b>🚆 Zpět</b><span id="sumTrainBack">—</span></div>
@@ -98,35 +98,35 @@
       <div class="timeline" id="sat">
         <article class="event" data-id="s1" data-start="2026-12-05T08:31:00+01:00" data-end="2026-12-05T10:50:00+01:00">
           <div class="eventHeader"><span class="time">08:31–10:50</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Vlak Praha → Dresden Hbf</h3><p>rj 178, přímý spoj. Na nádraží být ideálně kolem 08:00.</p><div class="privateInline hidden" id="outboundPrivate"></div></div>
+          <div class="eventBody"><h3>Vlak Praha → Dresden Hbf</h3><p>rj 178, přímý spoj. Na nádraží být ideálně kolem 08:00.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Praha+hlavn%C3%AD+n%C3%A1dra%C5%BE%C3%AD" target="_blank" rel="noopener">📍 Praha hl.n.</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Praha%20hlavn%C3%AD%20n%C3%A1dra%C5%BE%C3%AD&destination=Dresden%20Hauptbahnhof&travelmode=transit" target="_blank" rel="noopener">📍 Trasa vlaku</a></div><div class="privateInline hidden" id="outboundPrivate"></div></div>
         </article>
         <article class="event" data-id="s2" data-start="2026-12-05T10:50:00+01:00" data-end="2026-12-05T11:10:00+01:00">
           <div class="eventHeader"><span class="time">10:50–11:10</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Zavazadla na Hbf</h3><p>Nejezdit hned na ubytování. Zavazadla dát do skříňky a pokračovat rovnou do centra.</p><div class="row"><a class="linkbtn" href="https://www.bahnhof.de/en/dresden-hbf/locker" target="_blank" rel="noopener">Skříňky DB ↗</a></div></div>
+          <div class="eventBody"><h3>Zavazadla na Hbf</h3><p>Nejezdit hned na ubytování. Zavazadla dát do skříňky a pokračovat rovnou do centra.</p><div class="row"><a class="linkbtn" href="https://www.bahnhof.de/en/dresden-hbf/locker" target="_blank" rel="noopener">Skříňky DB ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a></div></div>
         </article>
         <article class="event accent" data-id="s3" data-start="2026-12-05T11:10:00+01:00" data-end="2026-12-05T12:30:00+01:00">
           <div class="eventHeader"><span class="time">11:10–12:30</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Stollenfest — priorita č. 1</h3><p>Směřovat ke Kulturpalastu; kolem poledne návrat průvodu, krájení obří štoly a prodej porcí.</p><div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kulturpalast+Dresden" target="_blank" rel="noopener">Navigovat</a><a class="linkbtn" href="https://www.dresdnerstollen.com/stollenfest-schutzverband-dresdner-stollen-e-v/" target="_blank" rel="noopener">Program ↗</a></div></div>
+          <div class="eventBody"><h3>Stollenfest — priorita č. 1</h3><p>Směřovat ke Kulturpalastu; kolem poledne návrat průvodu, krájení obří štoly a prodej porcí.</p><div class="row"><a class="linkbtn" href="https://www.dresdnerstollen.com/stollenfest-schutzverband-dresdner-stollen-e-v/" target="_blank" rel="noopener">Program ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Kulturpalast+Dresden" target="_blank" rel="noopener">📍 Kulturpalast</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Dresden%20Hauptbahnhof&destination=Kulturpalast%20Dresden&travelmode=walking" target="_blank" rel="noopener">📍 Trasa z Hbf</a></div></div>
         </article>
         <article class="event" data-id="s4" data-start="2026-12-05T12:30:00+01:00" data-end="2026-12-05T14:00:00+01:00">
           <div class="eventHeader"><span class="time">12:30–14:00</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Striezelmarkt + oběd ze stánků</h3><p>První svařák, Handbrot, Bratwurst nebo Kartoffelpuffer. Hlavní večerní návštěvu nechat na později.</p></div>
+          <div class="eventBody"><h3>Striezelmarkt + oběd ze stánků</h3><p>První svařák, Handbrot, Bratwurst nebo Kartoffelpuffer. Hlavní večerní návštěvu nechat na později.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Striezelmarkt+Dresden" target="_blank" rel="noopener">📍 Striezelmarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Altmarkt+Dresden" target="_blank" rel="noopener">📍 Altmarkt</a></div></div>
         </article>
         <article class="event" data-id="s5" data-start="2026-12-05T14:00:00+01:00" data-end="2026-12-05T15:20:00+01:00">
           <div class="eventHeader"><span class="time">14:00–15:20</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Pomalý okruh Starým Městem</h3><p><b>Altmarkt → Neumarkt → Frauenkirche → Fürstenzug → Stallhof → Theaterplatz → Semperoper → Zwinger.</b></p></div>
+          <div class="eventBody"><h3>Pomalý okruh Starým Městem</h3><p><b>Altmarkt → Neumarkt → Frauenkirche → Fürstenzug → Stallhof → Theaterplatz → Semperoper → Zwinger.</b></p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Altmarkt%20Dresden&destination=Zwinger%20Dresden&waypoints=Neumarkt%20Dresden%7CFrauenkirche%20Dresden%7CF%C3%BCrstenzug%20Dresden%7CStallhof%20Dresden%7CTheaterplatz%20Dresden%7CSemperoper%20Dresden&travelmode=walking" target="_blank" rel="noopener">📍 Celá pěší trasa</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Altmarkt+Dresden" target="_blank" rel="noopener">📍 Altmarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Neumarkt+Dresden" target="_blank" rel="noopener">📍 Neumarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Frauenkirche+Dresden" target="_blank" rel="noopener">📍 Frauenkirche</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=F%C3%BCrstenzug+Dresden" target="_blank" rel="noopener">📍 Fürstenzug</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Stallhof+Dresden" target="_blank" rel="noopener">📍 Stallhof</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Theaterplatz+Dresden" target="_blank" rel="noopener">📍 Theaterplatz</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Semperoper+Dresden" target="_blank" rel="noopener">📍 Semperoper</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Zwinger+Dresden" target="_blank" rel="noopener">📍 Zwinger</a></div></div>
         </article>
         <article class="event" data-id="s6" data-start="2026-12-05T15:20:00+01:00" data-end="2026-12-05T17:00:00+01:00">
           <div class="eventHeader"><span class="time">15:20–17:00</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Leubnitz, check-in a pauza</h3><p>Vyzvednout zavazadla, MHD na ubytování a krátký odpočinek.</p><div class="privateInline hidden" id="stayPrivate"></div></div>
+          <div class="eventBody"><h3>Leubnitz, check-in a pauza</h3><p>Vyzvednout zavazadla, MHD na ubytování a krátký odpočinek.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Leubnitz+Dresden" target="_blank" rel="noopener">📍 Leubnitz</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Dresden%20Hauptbahnhof&destination=Leubnitz%20Dresden&travelmode=transit" target="_blank" rel="noopener">📍 Trasa z Hbf</a></div><div class="privateInline hidden" id="stayPrivate"></div></div>
         </article>
         <article class="event accent" data-id="s7" data-start="2026-12-05T17:00:00+01:00" data-end="2026-12-05T21:30:00+01:00">
           <div class="eventHeader"><span class="time">17:00–21:30</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Hlavní adventní večer</h3><p><b>Striezelmarkt → Neumarkt → Stallhof → Frauenkirche / Münzgasse.</b> Pokud zbude energie, Augustusmarkt.</p></div>
+          <div class="eventBody"><h3>Hlavní adventní večer</h3><p><b>Striezelmarkt → Neumarkt → Stallhof → Frauenkirche / Münzgasse.</b> Pokud zbude energie, Augustusmarkt.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Striezelmarkt%20Dresden&destination=Augustusmarkt%20Dresden&waypoints=Neumarkt%20Dresden%7CStallhof%20Dresden%7CFrauenkirche%20Dresden%7CM%C3%BCnzgasse%20Dresden&travelmode=walking" target="_blank" rel="noopener">📍 Celá večerní trasa</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Striezelmarkt+Dresden" target="_blank" rel="noopener">📍 Striezelmarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Neumarkt+Dresden" target="_blank" rel="noopener">📍 Neumarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Stallhof+Dresden" target="_blank" rel="noopener">📍 Stallhof</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Frauenkirche+Dresden" target="_blank" rel="noopener">📍 Frauenkirche</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=M%C3%BCnzgasse+Dresden" target="_blank" rel="noopener">📍 Münzgasse</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener">📍 Augustusmarkt</a></div></div>
         </article>
         <article class="event" data-id="s8" data-start="2026-12-05T21:30:00+01:00" data-end="2026-12-05T22:30:00+01:00">
           <div class="eventHeader"><span class="time">cca 21:30</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Návrat na ubytování</h3><p>MHD zpět do Leubnitz.</p></div>
+          <div class="eventBody"><h3>Návrat na ubytování</h3><p>MHD zpět do Leubnitz.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Leubnitz+Dresden" target="_blank" rel="noopener">📍 Leubnitz</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Altmarkt%20Dresden&destination=Leubnitz%20Dresden&travelmode=transit" target="_blank" rel="noopener">📍 Trasa z centra</a></div></div>
         </article>
       </div>
 
@@ -137,23 +137,23 @@
         </article>
         <article class="event" data-id="n2" data-start="2026-12-06T10:30:00+01:00" data-end="2026-12-06T11:15:00+01:00">
           <div class="eventHeader"><span class="time">10:30–11:15</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Checkout → Hbf → úschovna</h3><p>Zavazadla nechat na nádraží, poslední část dne projít nalehko.</p></div>
+          <div class="eventBody"><h3>Checkout → Hbf → úschovna</h3><p>Zavazadla nechat na nádraží, poslední část dne projít nalehko.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Leubnitz%20Dresden&destination=Dresden%20Hauptbahnhof&travelmode=transit" target="_blank" rel="noopener">📍 Trasa na Hbf</a></div></div>
         </article>
         <article class="event accent" data-id="n3" data-start="2026-12-06T11:15:00+01:00" data-end="2026-12-06T13:20:00+01:00">
           <div class="eventHeader"><span class="time">11:15–13:20</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Nedělní trhy</h3><p>Doplnit, co jste nestihli: Frauenkirche / Münzgasse, Neumarkt, Stallhof, případně Augustusmarkt.</p></div>
+          <div class="eventBody"><h3>Nedělní trhy</h3><p>Doplnit, co jste nestihli: Frauenkirche / Münzgasse, Neumarkt, Stallhof, případně Augustusmarkt.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Frauenkirche+Dresden" target="_blank" rel="noopener">📍 Frauenkirche</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=M%C3%BCnzgasse+Dresden" target="_blank" rel="noopener">📍 Münzgasse</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Neumarkt+Dresden" target="_blank" rel="noopener">📍 Neumarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Stallhof+Dresden" target="_blank" rel="noopener">📍 Stallhof</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener">📍 Augustusmarkt</a></div></div>
         </article>
         <article class="event" data-id="n4" data-start="2026-12-06T13:20:00+01:00" data-end="2026-12-06T14:10:00+01:00">
           <div class="eventHeader"><span class="time">13:20–14:10</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Oběd</h3><p>Primárně stánky. Rezervní varianta: <b>Platzhirsch am Schlosseck</b>.</p><div class="row"><a class="linkbtn" href="https://www.google.com/maps/search/?api=1&query=Platzhirsch+am+Schlosseck+Dresden" target="_blank" rel="noopener">Restaurace ↗</a></div></div>
+          <div class="eventBody"><h3>Oběd</h3><p>Primárně stánky. Rezervní varianta: <b>Platzhirsch am Schlosseck</b>.</p><div class="row"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Platzhirsch+am+Schlosseck+Dresden" target="_blank" rel="noopener">📍 Platzhirsch am Schlosseck</a></div></div>
         </article>
         <article class="event" data-id="n5" data-start="2026-12-06T14:10:00+01:00" data-end="2026-12-06T14:40:00+01:00">
           <div class="eventHeader"><span class="time">14:10–14:40</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Zpět na Dresden Hbf</h3><p>Vyzvednout zavazadla a být u nástupiště s rezervou.</p></div>
+          <div class="eventBody"><h3>Zpět na Dresden Hbf</h3><p>Vyzvednout zavazadla a být u nástupiště s rezervou.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a></div></div>
         </article>
         <article class="event" data-id="n6" data-start="2026-12-06T15:10:00+01:00" data-end="2026-12-06T17:25:00+01:00">
           <div class="eventHeader"><span class="time">15:10–17:25</span><button class="check" type="button">○ Hotovo</button></div>
-          <div class="eventBody"><h3>Vlak Dresden Hbf → Praha</h3><p>rj 383, přímý spoj. Příjezd Praha hl. n. 17:25.</p><div class="privateInline hidden" id="returnPrivate"></div></div>
+          <div class="eventBody"><h3>Vlak Dresden Hbf → Praha</h3><p>rj 383, přímý spoj. Příjezd Praha hl. n. 17:25.</p><div class="maplinks"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener">📍 Dresden Hbf</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Praha+hlavn%C3%AD+n%C3%A1dra%C5%BE%C3%AD" target="_blank" rel="noopener">📍 Praha hl.n.</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Dresden%20Hauptbahnhof&destination=Praha%20hlavn%C3%AD%20n%C3%A1dra%C5%BE%C3%AD&travelmode=transit" target="_blank" rel="noopener">📍 Trasa vlaku</a></div><div class="privateInline hidden" id="returnPrivate"></div></div>
         </article>
       </div>
     </section>
@@ -161,11 +161,11 @@
     <section id="markets" class="section">
       <div class="sectionHead"><div><div class="eyebrow wine">Co stojí za to</div><h2>Vánoční trhy</h2></div><span class="pill">5 hlavních zastávek</span></div>
       <div class="cards">
-        <article class="card"><span class="badge">MUST</span><h3>Striezelmarkt</h3><small>Altmarkt</small><p>Hlavní drážďanský vánoční trh.</p><a href="https://striezelmarkt.dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-        <article class="card"><span class="badge">TOP</span><h3>Advent auf dem Neumarkt</h3><small>Neumarkt / Frauenkirche</small><p>Historizující trh v kulise historického centra.</p><a href="https://www.adventaufdemneumarkt.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-        <article class="card"><span class="badge">TOP</span><h3>Mittelalter-Weihnacht</h3><small>Stallhof</small><p>Středověký trh v nádvoří zámku.</p><a href="https://www.mittelalter-weihnacht.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-        <article class="card"><span class="badge">TOP</span><h3>Frauenkirche / Münzgasse</h3><small>okolí Frauenkirche</small><p>Večerní světla a příjemná atmosféra.</p><a href="https://www.weihnachtsmarkt-dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a></article>
-        <article class="card"><span class="badge">BONUS</span><h3>Augustusmarkt</h3><small>Neustadt</small><p>Modernější a mezinárodnější trh.</p><a href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener">Mapa ↗</a></article>
+        <article class="card"><span class="badge">MUST</span><h3>Striezelmarkt</h3><small>Altmarkt</small><p>Hlavní drážďanský vánoční trh.</p><div class="row"><a class="linkbtn" href="https://striezelmarkt.dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Striezelmarkt+Dresden" target="_blank" rel="noopener">📍 Striezelmarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Altmarkt+Dresden" target="_blank" rel="noopener">📍 Altmarkt</a></div></article>
+        <article class="card"><span class="badge">TOP</span><h3>Advent auf dem Neumarkt</h3><small>Neumarkt / Frauenkirche</small><p>Historizující trh v kulise historického centra.</p><div class="row"><a class="linkbtn" href="https://www.adventaufdemneumarkt.de/" target="_blank" rel="noopener">Oficiální web ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Neumarkt+Dresden" target="_blank" rel="noopener">📍 Neumarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Frauenkirche+Dresden" target="_blank" rel="noopener">📍 Frauenkirche</a></div></article>
+        <article class="card"><span class="badge">TOP</span><h3>Mittelalter-Weihnacht</h3><small>Stallhof</small><p>Středověký trh v nádvoří zámku.</p><div class="row"><a class="linkbtn" href="https://www.mittelalter-weihnacht.de/" target="_blank" rel="noopener">Oficiální web ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Stallhof+Dresden" target="_blank" rel="noopener">📍 Stallhof</a></div></article>
+        <article class="card"><span class="badge">TOP</span><h3>Frauenkirche / Münzgasse</h3><small>okolí Frauenkirche</small><p>Večerní světla a příjemná atmosféra.</p><div class="row"><a class="linkbtn" href="https://www.weihnachtsmarkt-dresden.de/" target="_blank" rel="noopener">Oficiální web ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Frauenkirche+Dresden" target="_blank" rel="noopener">📍 Frauenkirche</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=M%C3%BCnzgasse+Dresden" target="_blank" rel="noopener">📍 Münzgasse</a></div></article>
+        <article class="card"><span class="badge">BONUS</span><h3>Augustusmarkt</h3><small>Neustadt</small><p>Modernější a mezinárodnější trh.</p><div class="row"><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener">📍 Augustusmarkt</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Neustadt+Dresden" target="_blank" rel="noopener">📍 Neustadt</a></div></article>
       </div>
     </section>
 
@@ -173,7 +173,7 @@
       <div class="sectionHead"><div><div class="eyebrow wine">Pohyb po městě</div><h2>MHD</h2></div></div>
       <div class="transport">
         <div class="card"><span class="badge">DOPORUČENO</span><h3>Familientageskarte · 1 tarifní zóna</h3><div class="price">€14,40 <small>/ den za oba</small></div><p>Pro dva dospělé vychází jednoduše koupit jednu rodinnou denní jízdenku na každý den.</p><a class="btn" href="https://www.dvb.de/cs-cz/jizdenky/turiste" target="_blank" rel="noopener">Tarif DVB ↗</a></div>
-        <div class="card"><h3>Linka 68</h3><div class="route"><span>Leubnitz</span><b>68</b><span>Prager Straße</span><span>Postplatz</span></div><p>Konkrétní prosincové odjezdy ověřit v DVB.</p><a class="btn" href="https://www.dvb.de/de-de/fahrplan" target="_blank" rel="noopener">Vyhledat spoj ↗</a></div>
+        <div class="card"><h3>Linka 68</h3><div class="route"><span>Leubnitz</span><b>68</b><span>Prager Straße</span><span>Postplatz</span></div><p>Konkrétní prosincové odjezdy ověřit v DVB.</p><div class="row"><a class="btn" href="https://www.dvb.de/de-de/fahrplan" target="_blank" rel="noopener">Vyhledat spoj ↗</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Leubnitz+Dresden" target="_blank" rel="noopener">📍 Leubnitz</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Prager+Stra%C3%9Fe+Dresden" target="_blank" rel="noopener">📍 Prager Straße</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=Postplatz+Dresden" target="_blank" rel="noopener">📍 Postplatz</a><a class="mapbtn" href="https://www.google.com/maps/dir/?api=1&origin=Leubnitz%20Dresden&destination=Postplatz%20Dresden&waypoints=Prager%20Stra%C3%9Fe%20Dresden&travelmode=transit" target="_blank" rel="noopener">📍 Trasa MHD</a></div></div>
       </div>
     </section>
 
@@ -185,12 +185,12 @@
           <path class="road" d="M440 430 L430 330 L420 260 L390 210 L350 185"/>
           <path class="road dash" d="M390 210 L470 145 L540 92"/>
           <path class="road" d="M440 430 L650 455"/>
-          <g class="pin"><circle cx="440" cy="430" r="17"/><text class="num" x="440" y="436">1</text><text class="label" x="465" y="437">Dresden Hbf</text></g>
-          <g class="pin"><circle cx="420" cy="260" r="17"/><text class="num" x="420" y="266">2</text><text class="label" x="445" y="266">Altmarkt</text></g>
-          <g class="pin"><circle cx="390" cy="210" r="17"/><text class="num" x="390" y="216">3</text><text class="label" x="415" y="216">Neumarkt</text></g>
-          <g class="pin"><circle cx="350" cy="185" r="17"/><text class="num" x="350" y="191">4</text><text class="label" x="235" y="164">Stallhof</text></g>
-          <g class="pin"><circle cx="540" cy="92" r="17"/><text class="num" x="540" y="98">5</text><text class="label" x="565" y="98">Augustusmarkt</text></g>
-          <g class="pin"><circle cx="650" cy="455" r="17"/><text class="num" x="650" y="461">6</text><text class="label" x="675" y="461">Leubnitz</text></g>
+          <a href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Altmarkt+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Neumarkt+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Stallhof+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Leubnitz+Dresden" target="_blank" rel="noopener"><g class="pin"><circle cx="440" cy="430" r="17"/><text class="num" x="440" y="436">1</text><text class="label" x="465" y="437">Dresden Hbf</text></g></a>
+          <g class="pin"><circle cx="420" cy="260" r="17"/><text class="num" x="420" y="266">2</text><text class="label" x="445" y="266">Altmarkt</text></g></a>
+          <g class="pin"><circle cx="390" cy="210" r="17"/><text class="num" x="390" y="216">3</text><text class="label" x="415" y="216">Neumarkt</text></g></a>
+          <g class="pin"><circle cx="350" cy="185" r="17"/><text class="num" x="350" y="191">4</text><text class="label" x="235" y="164">Stallhof</text></g></a>
+          <g class="pin"><circle cx="540" cy="92" r="17"/><text class="num" x="540" y="98">5</text><text class="label" x="565" y="98">Augustusmarkt</text></g></a>
+          <g class="pin"><circle cx="650" cy="455" r="17"/><text class="num" x="650" y="461">6</text><text class="label" x="675" y="461">Leubnitz</text></g></a>
         </svg>
       </div>
     </section>
