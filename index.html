@@ -30,6 +30,30 @@
 .modbody{padding:18px 20px 24px}
 .modbody h2{margin:.1rem 0 .5rem}
 .center{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* v5: stable itinerary layout */
+.event{
+  display:grid!important;
+  grid-template-columns:92px minmax(0,1fr) auto!important;
+  grid-template-areas:"time content action"!important;
+  gap:12px 14px!important;
+  align-items:start!important;
+}
+.event>.time{grid-area:time;min-width:0}
+.event>div:last-child{grid-area:content;min-width:0}
+.event>.check{grid-area:action;justify-self:end;align-self:start;margin-top:0!important;white-space:nowrap}
+.build{display:inline-flex;margin-top:9px;font-size:.76rem;color:#fff9;background:#ffffff12;border:1px solid #ffffff24;border-radius:999px;padding:4px 8px}
+#forceUpdate{margin-top:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:7px 10px;font-weight:750;cursor:pointer}
+#qrOut{display:flex;justify-content:center;align-items:center;min-height:80px;overflow:auto}
+#qrOut svg,#qrOut img{max-width:100%;height:auto;background:#fff;padding:7px;border-radius:10px;border:1px solid var(--line)}
+@media(max-width:620px){
+  .event{
+    grid-template-columns:1fr auto!important;
+    grid-template-areas:"time action" "content content"!important;
+  }
+  .event>.check{justify-self:end}
+}
+
 @media(max-width:780px){.qrwrap{grid-template-columns:1fr}}
 
 @media(max-width:780px){.heroInner{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr 1fr}.transport{grid-template-columns:1fr}.sectionHead{align-items:flex-start;flex-direction:column}.form{grid-template-columns:1fr}.wide{grid-column:auto}.checklist{grid-template-columns:1fr}}
@@ -51,7 +75,7 @@
 <header class="hero">
   <div class="wrap heroInner">
     <div><div class="eyebrow">5.–6. prosince 2026 · 2 dospělí</div><h1>Adventní Drážďany</h1><p class="lead">Stollenfest, Striezelmarkt, Neumarkt a středověký Stallhof. Pohodové tempo, MHD a příručka, která funguje i offline.</p><div class="headerActions"><button class="ghostbtn" id="showInvite" type="button">Pozvánka</button></div></div>
-    <div class="statusbox"><div class="count" id="countdown">Načítám odpočet…</div><div class="online"><i class="dot" id="dot"></i><span id="net">zjišťuji připojení</span></div><button class="install hidden" id="install">Nainstalovat aplikaci</button></div>
+    <div class="statusbox"><div class="count" id="countdown">Načítám odpočet…</div><div class="online"><i class="dot" id="dot"></i><span id="net">zjišťuji připojení</span></div><div class="build">build 2026-10-02.5</div><div><button id="forceUpdate" type="button">Načíst aktuální verzi</button></div><button class="install hidden" id="install">Nainstalovat aplikaci</button></div>
   </div>
 </header>
 
@@ -164,8 +188,8 @@
       </div>
       <div class="qrbox">
         <div style="font-weight:800;margin-bottom:8px">QR kód</div>
-        <img id="qrImg" alt="QR kód pro sdílení soukromých údajů" class="hidden">
-        <p id="qrHint" class="help">QR se vytvoří po stisku tlačítka. Jeho vytvoření vyžaduje připojení k internetu.</p>
+        <div id="qrOut" class="hidden" aria-label="QR kód pro sdílení soukromých údajů"></div>
+        <p id="qrHint" class="help">QR se generuje přímo v telefonu a funguje i offline. Soukromá data se neposílají žádné QR službě.</p>
       </div>
     </div>
   </div>
@@ -188,6 +212,7 @@
 
 <footer class="footer"><div class="wrap"><b>Drážďany 2026</b><br><small>offline travel guide · soukromé údaje zůstávají v tomto prohlížeči</small></div></footer>
 
+<script src="./qrcode.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)], K='dresden26:';
 function net(){const on=navigator.onLine;$('#net').textContent=on?'online · externí odkazy fungují':'offline · příručka je dostupná';$('#dot').classList.toggle('ok',on)} addEventListener('online',net);addEventListener('offline',net);net();
@@ -204,13 +229,13 @@ function savePrivate(){const d=readPrivate();localStorage.setItem(K+'private',JS
 function loadPrivate(){try{const saved=JSON.parse(localStorage.getItem(K+'private')||'{}');if(Object.keys(saved).length){fillPrivate(saved);return}const legacy={address:localStorage.getItem(K+'pAddress')||'',booking:localStorage.getItem(K+'pBooking')||'',phone:localStorage.getItem(K+'pPhone')||'',notes:localStorage.getItem(K+'pNotes')||''};if(Object.values(legacy).some(Boolean)){fillPrivate(legacy);savePrivate()}}catch(e){}}
 loadPrivate();
 $('#privateForm').onsubmit=e=>{e.preventDefault();savePrivate();const b=$('#privateForm button[type=submit]');const t=b.textContent;b.textContent='Uloženo ✓';setTimeout(()=>b.textContent=t,1300)};
-$('#clear').onclick=()=>{if(confirm('Smazat lokálně uložené soukromé údaje?')){localStorage.removeItem(K+'private');fillPrivate();$('#jsonArea').value='';$('#qrImg').classList.add('hidden')}};
+$('#clear').onclick=()=>{if(confirm('Smazat lokálně uložené soukromé údaje?')){localStorage.removeItem(K+'private');fillPrivate();$('#jsonArea').value='';$('#qrOut').classList.add('hidden');$('#qrOut').innerHTML=''}};
 function buildPayload(){return {version:1,trip:'drazdany2026',privateData:savePrivate()}}
 function exportJson(){const t=JSON.stringify(buildPayload(),null,2);$('#jsonArea').value=t;return t}
 $('#exportJson').onclick=()=>{exportJson();$('#jsonArea').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#copyJson').onclick=async()=>{const t=$('#jsonArea').value||exportJson();try{await navigator.clipboard.writeText(t);const b=$('#copyJson');b.textContent='Zkopírováno ✓';setTimeout(()=>b.textContent='Kopírovat JSON',1300)}catch(e){$('#jsonArea').focus();$('#jsonArea').select()}};
 $('#importJson').onclick=()=>{try{const obj=JSON.parse($('#jsonArea').value);const d=obj.privateData||obj;fillPrivate(d);savePrivate();alert('JSON byl uložen do aplikace.')}catch(e){alert('JSON se nepodařilo načíst. Zkontrolujte jeho formát.')}};
-$('#makeQr').onclick=()=>{const t=exportJson();const img=$('#qrImg');img.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+encodeURIComponent(t);img.classList.remove('hidden');$('#qrHint').textContent='Naskenujte QR druhým telefonem. QR obsahuje stejné JSON jako pole vlevo.'};
+$('#makeQr').onclick=()=>{try{const t=exportJson();qrcode.stringToBytes=qrcode.stringToBytesFuncs['UTF-8'];const qr=qrcode(0,'M');qr.addData(t);qr.make();const out=$('#qrOut');out.innerHTML=qr.createSvgTag({cellSize:4,margin:8,scalable:true,alt:'QR kód s privátními daty'});out.classList.remove('hidden');$('#qrHint').textContent='Naskenujte QR druhým telefonem. QR obsahuje stejné JSON jako pole vlevo a byl vytvořen lokálně.'}catch(e){alert('QR se nepodařilo vytvořit: '+e)}};
 let promptEvent;addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptEvent=e;$('#install').classList.remove('hidden')});$('#install').onclick=async()=>{if(!promptEvent)return;promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;$('#install').classList.add('hidden')};
 function showIntro(){$('#introOverlay').classList.remove('hidden');document.body.style.overflow='hidden'}
 function hideIntro(remember=true){$('#introOverlay').classList.add('hidden');document.body.style.overflow='';if(remember)localStorage.setItem(K+'introSeen','1')}
@@ -218,6 +243,11 @@ if(!localStorage.getItem(K+'introSeen'))showIntro();
 $('#enterApp').onclick=()=>hideIntro(true);
 $('#showInvite').onclick=()=>showIntro();
 $('#introOverlay').addEventListener('click',e=>{if(e.target.id==='introOverlay')hideIntro(false)});
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+$('#forceUpdate').onclick=async()=>{try{if('serviceWorker'in navigator){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()))}if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}location.replace('./?refresh='+Date.now())}catch(e){location.reload()}};
+if('serviceWorker'in navigator){
+  let reloading=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloading){reloading=true;location.reload()}});
+  addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});await reg.update()}catch(e){console.warn('SW update failed',e)}});
+}
 </script>
 </body></html>
