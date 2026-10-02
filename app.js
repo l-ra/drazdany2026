@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-var BUILD='2026.10.03-v8';
+var BUILD='2026.10.03-v9';
 var K='dresden26:';
 var errors=[];
 function $(s,r){return (r||document).querySelector(s)}

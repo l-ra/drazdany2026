@@ -2,7 +2,7 @@
 
 Offline PWA průvodce pro adventní výlet do Drážďan **5.–6. prosince 2026**.
 
-## Verze v8
+## Verze v9
 
 Aplikace je rozdělena na:
 - `index.html`
@@ -34,3 +34,7 @@ Každé konkrétní místo a každá plánovaná trasa v itineráři, trzích, M
 ## Pozvánka v8
 
 Pozvánka je nově uložena jako textový SVG soubor `invite.svg` místo binárního JPEG. Tím se odstranil problém s poškozeným / neúplným `invite.jpg` v repozitáři a obrázek je spolehlivě dostupný i offline.
+
+## Pozvánka v9
+
+Primární obrázek pozvánky je znovu `invite.jpg` (1200×900, ručně nahraný originální JPEG). `invite.svg` zůstává jako fallback při chybě načtení. Service worker cachuje oba soubory pro offline použití.
