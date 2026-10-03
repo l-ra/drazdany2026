@@ -36,12 +36,13 @@
           <summary aria-label="Otevřít nabídku">☰</summary>
           <div class="menuPanel">
             <button type="button" id="showInvite">🎄 Pozvánka</button>
+            <button type="button" id="openPrivateMenu">🔐 Moje data</button>
             <button type="button" id="forceUpdate">↻ Načíst aktuální verzi</button>
             <button type="button" id="resetProgress">⟳ Resetovat označení Hotovo</button>
             <button type="button" id="clearPrivateMenu">🗑 Smazat soukromá data</button>
             <button type="button" class="hidden" id="install">📲 Nainstalovat aplikaci</button>
             <div class="diag">
-              <div><b>Verze:</b> <span id="diagVersion">2026.10.03-v9</span></div>
+              <div><b>Verze:</b> <span id="diagVersion">2026.10.03-v10</span></div>
               <div><b>Síť:</b> <span id="diagNetwork">—</span></div>
               <div><b>Service worker:</b> <span id="diagSw">—</span></div>
               <div><b>Privátní data:</b> <span id="diagPrivate">—</span></div>
@@ -59,8 +60,6 @@
       <button class="active" data-go="plan">Itinerář</button>
       <button data-go="markets">Trhy</button>
       <button data-go="transport">MHD</button>
-      <button data-go="map">Mapa</button>
-      <button data-go="private">Moje data</button>
     </div>
   </nav>
 
@@ -75,7 +74,7 @@
     <section id="privateSummary" class="tripCard hidden" aria-live="polite">
       <div class="tripCardHead">
         <div><div class="eyebrow wine">Soukromé údaje načteny</div><h2>Moje cesta</h2></div>
-        <button type="button" class="linkbtn" data-go="private">Upravit</button>
+        <button type="button" class="linkbtn" id="openPrivateSummary">Upravit</button>
       </div>
       <div class="tripGrid">
         <div><b>🏠 Ubytování</b><span id="sumAddress">—</span><small id="sumStay">—</small><a id="sumAddressMap" class="mapbtn hidden" target="_blank" rel="noopener">📍 Mapa ubytování</a></div>
@@ -177,26 +176,8 @@
       </div>
     </section>
 
-    <section id="map" class="section">
-      <div class="sectionHead"><div><div class="eyebrow wine">Offline orientace</div><h2>Schematická mapa</h2></div><span class="pill">funguje bez internetu</span></div>
-      <div class="mapbox">
-        <svg viewBox="0 0 900 500" role="img" aria-label="Schematická mapa hlavních bodů">
-          <path class="river" d="M0 155 C180 120 300 200 470 160 S720 95 900 135"/>
-          <path class="road" d="M440 430 L430 330 L420 260 L390 210 L350 185"/>
-          <path class="road dash" d="M390 210 L470 145 L540 92"/>
-          <path class="road" d="M440 430 L650 455"/>
-          <a href="https://www.google.com/maps/search/?api=1&query=Dresden+Hauptbahnhof" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Altmarkt+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Neumarkt+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Stallhof+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Augustusmarkt+Dresden" target="_blank" rel="noopener"><a href="https://www.google.com/maps/search/?api=1&query=Leubnitz+Dresden" target="_blank" rel="noopener"><g class="pin"><circle cx="440" cy="430" r="17"/><text class="num" x="440" y="436">1</text><text class="label" x="465" y="437">Dresden Hbf</text></g></a>
-          <g class="pin"><circle cx="420" cy="260" r="17"/><text class="num" x="420" y="266">2</text><text class="label" x="445" y="266">Altmarkt</text></g></a>
-          <g class="pin"><circle cx="390" cy="210" r="17"/><text class="num" x="390" y="216">3</text><text class="label" x="415" y="216">Neumarkt</text></g></a>
-          <g class="pin"><circle cx="350" cy="185" r="17"/><text class="num" x="350" y="191">4</text><text class="label" x="235" y="164">Stallhof</text></g></a>
-          <g class="pin"><circle cx="540" cy="92" r="17"/><text class="num" x="540" y="98">5</text><text class="label" x="565" y="98">Augustusmarkt</text></g></a>
-          <g class="pin"><circle cx="650" cy="455" r="17"/><text class="num" x="650" y="461">6</text><text class="label" x="675" y="461">Leubnitz</text></g></a>
-        </svg>
-      </div>
-    </section>
-
-    <section id="private" class="section">
-      <div class="sectionHead"><div><div class="eyebrow wine">Pouze v tomto telefonu</div><h2>Moje soukromé údaje</h2></div><span class="pill">JSON + QR</span></div>
+    <section id="private" class="section hidden" aria-label="Moje soukromé údaje">
+      <div class="sectionHead"><div><div class="eyebrow wine">Pouze v tomto telefonu</div><h2>Moje soukromé údaje</h2></div><div class="sectionTools"><span class="pill">JSON + QR</span><button type="button" class="linkbtn" id="hidePrivate">Skrýt moje data</button></div></div>
       <div class="privacy">
         <form class="form" id="privateForm">
           <label>Přesná adresa ubytování<input id="pAddress" autocomplete="off"></label>

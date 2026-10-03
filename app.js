@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-var BUILD='2026.10.03-v9';
+var BUILD='2026.10.03-v10';
 var K='dresden26:';
 var errors=[];
 function $(s,r){return (r||document).querySelector(s)}
@@ -91,6 +91,20 @@ function initProgressStateOnly(){$$('.event').forEach(function(e){var done=local
 function initChecklist(){
   $$('#checklist input').forEach(function(c){var key=K+'c:'+c.getAttribute('data-c');c.checked=localStorage.getItem(key)==='1';c.addEventListener('change',function(){localStorage.setItem(key,c.checked?'1':'0')})});
 }
+function showPrivateSection(){
+  var section=$('#private');if(!section)return;
+  section.classList.remove('hidden');closeMenu();
+  requestAnimationFrame(function(){section.scrollIntoView({behavior:'smooth',block:'start'})});
+}
+function hidePrivateSection(){
+  var section=$('#private');if(!section)return;
+  section.classList.add('hidden');
+}
+function initPrivateAccess(){
+  var fromMenu=$('#openPrivateMenu');if(fromMenu)fromMenu.addEventListener('click',showPrivateSection);
+  var fromSummary=$('#openPrivateSummary');if(fromSummary)fromSummary.addEventListener('click',showPrivateSection);
+  var hide=$('#hidePrivate');if(hide)hide.addEventListener('click',hidePrivateSection);
+}
 function initPrivate(){
   var d=migratePrivate();fillPrivateForm(d);renderPrivate(d);
   var form=$('#privateForm');
@@ -149,6 +163,7 @@ document.addEventListener('DOMContentLoaded',function(){
   safeInit('countdown',initCountdown);
   safeInit('itinerary',initProgress);
   safeInit('checklist',initChecklist);
+  safeInit('private-access',initPrivateAccess);
   safeInit('private-data',initPrivate);
   safeInit('invitation',initInvitation);
   safeInit('install',initInstall);
